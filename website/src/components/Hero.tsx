@@ -39,15 +39,15 @@ export function Hero() {
                 </Link>
               )}
               <Link href="/dashboard" aria-label="Dashboard">
-                <Button variant="outline" px={5} py={6}>
+                <Button variant="outline" colorScheme="blue" fontSize="xl"  px={200} py={100}>
                   {t("index:help_us_improve")}
                 </Button>
               </Link>
-              <Link href="https://huggingface.co/OpenAssistant" aria-label="Hugging face">
+              {/* <Link href="https://turkunlp.org/" aria-label="Hugging face">
                 <Button variant="outline" px={5} py={6}>
                   {t("index:hugging_face_link")}
                 </Button>
-              </Link>
+              </Link> */}
             </Box>
           </Box>
           <Box className="relative mt-10 sm:mt-20 lg:col-span-5 lg:row-span-2 lg:mt-0 xl:col-span-6">
