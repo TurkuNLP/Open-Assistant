@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -178,7 +179,7 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: str = "5432"
     POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "postgres"
+    POSTGRES_PASSWORD: str = os.environ["POSTGRES_PASSWORD"]
     POSTGRES_DB: str = "postgres"
     DATABASE_URI: Optional[PostgresDsn] = None
     DATABASE_MAX_TX_RETRY_COUNT: int = 3

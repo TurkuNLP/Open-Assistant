@@ -4,7 +4,8 @@
   "default": {
     "unchanged_title": "Ei muutoksia",
     "unchanged_message": "Haluatko varmasti jatkaa?",
-    "continue_anyway": "Jatka tästä huolimatta"
+    "continue_anyway": "Jatka tästä huolimatta",
+    "markdownguide": "Styling with markdown supported"
   },
   "no_more_tasks": "Uusia tehtäviä ei löytynyt.",
   "random": {
@@ -16,7 +17,8 @@
     "desc": "Kirjoita aloitusviestejä auttaaksesi Open Assistantia vastaamaan monimuotoisiin kysymyksiin. (jotka lisätään arvontaan)",
     "overview": "Kirjoita aloitusviesti, joka annetaan Open Assistantille",
     "instruction": "Kirjoita aloituskehotteet",
-    "response_placeholder": "Kirjoita kehotteesi tähän..."
+    "response_placeholder": "Kirjoita kehotteesi tähän...",
+    "shortcut_tip": "Voit käyttää pikanäppäimiä Arvioidaksesi ja Lähettääksesi vastauksia:"
   },
   "reply_as_user": {
     "label": "Vastaa käyttäjänä",

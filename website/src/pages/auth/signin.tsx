@@ -55,7 +55,7 @@ const errorMessages: Record<SignInErrorTypes, string> = {
   default: "Unable to sign in.",
 };
 
-const REDIRECT_AFTER_LOGIN = "/chat";
+const REDIRECT_AFTER_LOGIN = "/dashboard";
 
 interface SigninProps {
   providers: Record<BuiltInProviderType, ClientSafeProvider>;

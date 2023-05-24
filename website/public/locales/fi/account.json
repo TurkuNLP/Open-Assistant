@@ -1,0 +1,8 @@
+{
+  "delete_account_data": "Kaikki Open Assistantille annetut tiedot, jotka ovat peräisin tehtävien ratkaisemisesta, sijoitusviesteistä ja chat-palvelun avulla käydyistä keskusteluista, säilytetään. Kaikki viittaukset alkuperäiseen käyttäjään anonymisoidaan.",
+  "delete_account_intro": "Tilin poistaminen merkitsee seuraavaa:",
+  "delete_account_leaderboard": "Poistettujen käyttäjien tilit eivät näy tulostaulukoissa",
+  "delete_account_permanent": "Tämä toiminto on lopullinen, eikä sitä voi peruuttaa",
+  "go_to_dashboard": "Palaa etusivulle",
+  "yes_delete": "Kyllä, poista tilini pysyvästi"
+}

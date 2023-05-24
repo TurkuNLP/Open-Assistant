@@ -26,7 +26,7 @@ function Error() {
           >
             <Link
               key="Report a Bug"
-              href="https://github.com/LAION-AI/Open-Assistant/issues/new/choose"
+              href="https://github.com/TurkuNLP/Open-Assistant/issues/new/choose"
               aria-label="Report a Bug"
               className="flex items-center"
               _hover={{ textDecoration: "none" }}
