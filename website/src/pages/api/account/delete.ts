@@ -28,20 +28,20 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(500).end();
   }
 
-  try {
-    const client = createInferenceClient(token);
-    await client.delete_account();
-    logger.info(`user ${token.sub} deleted from inference`);
-  } catch (err) {
-    if (err instanceof AxiosError && err.response.status === 404) {
-      // user does not exist in the inference backend, they have not send any chats
-      // that is okay, we can continue
-      logger.info(`user ${token.sub} does not exist on inference`);
-    } else {
-      logger.info("could not delete user from inference backend", err);
-      // we don't return here, the other account is already deleted, we have to power through it
-    }
-  }
+  // try {
+  //   const client = createInferenceClient(token);
+  //   await client.delete_account();
+  //   logger.info(`user ${token.sub} deleted from inference`);
+  // } catch (err) {
+  //   if (err instanceof AxiosError && err.response.status === 404) {
+  //     // user does not exist in the inference backend, they have not send any chats
+  //     // that is okay, we can continue
+  //     logger.info(`user ${token.sub} does not exist on inference`);
+  //   } else {
+  //     logger.info("could not delete user from inference backend", err);
+  //     // we don't return here, the other account is already deleted, we have to power through it
+  //   }
+  // }
 
   try {
     await prisma.user.delete({ where: { id: token.sub } });
