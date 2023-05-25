@@ -26,8 +26,8 @@ const Home = () => {
       </Head>
       <Box as="main" className="oa-basic-theme">
         <Hero />
-        <CallToAction />
-        <Faq />
+        {/* <CallToAction /> */}
+        {/* <Faq /> */}
       </Box>
     </>
   );

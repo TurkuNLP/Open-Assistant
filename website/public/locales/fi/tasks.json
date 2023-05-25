@@ -7,7 +7,7 @@
     "continue_anyway": "Jatka tästä huolimatta",
     "markdownguide": "Styling with markdown supported"
   },
-  "no_more_tasks": "Uusia tehtäviä ei löytynyt.",
+  "no_more_tasks": "Uusia tehtäviä ei löytynyt. Yritä myöhemmin uudelleen.",
   "random": {
     "label": "Kokeilen onneani",
     "desc": "Auta meitä parantamaan Open Assistantia suorittamalla satunnainen tehtävä."
@@ -16,7 +16,7 @@
     "label": "Luo aloitusviestejä",
     "desc": "Kirjoita aloitusviestejä auttaaksesi Open Assistantia vastaamaan monimuotoisiin kysymyksiin. (jotka lisätään arvontaan)",
     "overview": "Kirjoita aloitusviesti, joka annetaan Open Assistantille",
-    "instruction": "Kirjoita aloituskehotteet",
+    "instruction": "Kirjoita aloitusviesti",
     "response_placeholder": "Kirjoita kehotteesi tähän...",
     "shortcut_tip": "Voit käyttää pikanäppäimiä Arvioidaksesi ja Lähettääksesi vastauksia:"
   },
@@ -73,18 +73,18 @@
     "overview": "Arvioi seuraavan keskustelun viimeinen viesti."
   },
   "classify_initial_prompt": {
-    "label": "Lajittele aloitusviesti",
-    "desc": "Lajittele viesti.",
+    "label": "Arvioi aloitusviesti",
+    "desc": "Arvioi viesti.",
     "overview": "Lue seuraava viesti ja vastaa siihen liittyviin kysymyksiin."
   },
   "classify_prompter_reply": {
-    "label": "Lajittele käyttäjän vastaus",
-    "desc": "Lajittele viesti.",
+    "label": "Arvioi käyttäjän vastaus",
+    "desc": "Arvioi viesti.",
     "overview": "Lue seuraava viestiketju ja vastaa sen viimeiseen viestiin liittyviin kysymyksiin."
   },
   "classify_assistant_reply": {
-    "label": "Lajittele assistentin vastaus",
-    "desc": "Lajittele viesti.",
+    "label": "Arvioi assistentin vastaus",
+    "desc": "Arvioi viesti.",
     "overview": "Lue seuraava viestiketju ja vastaa sen viimeiseen viestiin liittyviin kysymyksiin."
   },
   "submitted_as": "Tämän kieleksi merkitään {{submit_lang}}",

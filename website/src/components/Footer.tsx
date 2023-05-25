@@ -7,8 +7,8 @@ import { useMemo } from "react";
 export function Footer() {
   const { t } = useTranslation();
   const { colorMode } = useColorMode();
-  const backgroundColor = colorMode === "light" ? "white" : "gray.800";
-  const textColor = colorMode === "light" ? "black" : "gray.300";
+  const backgroundColor = colorMode !== "light" ? "white" : "gray.800";
+  const textColor = colorMode !== "light" ? "black" : "gray.300";
 
   return (
     <footer>
@@ -29,12 +29,12 @@ export function Footer() {
           <Flex alignItems="center">
             <Box pr="2">
               <Link href="/" aria-label="Home">
-                <Image src="/images/logos/logo.svg" width="52" height="52" alt="logo" />
+                <Image src="/images/logos/logo.png" width="52" height="52" alt="logo" />
               </Link>
             </Box>
 
             <Box>
-              <Text fontSize="md" fontWeight="bold">
+              <Text fontSize="md" fontWeight="bold" color={textColor}>
                 {t("title")}
               </Text>
               <Text fontSize="sm" color="gray.500">
@@ -43,7 +43,7 @@ export function Footer() {
             </Box>
           </Flex>
 
-          <nav>
+          {/* <nav>
             <Box display="flex" flexDirection={["column", "row"]} gap={["6", "14"]} fontSize="sm">
               <Flex direction="column" alignItems={["center", "start"]}>
                 <Text fontWeight="bold" color={textColor}>
@@ -69,7 +69,7 @@ export function Footer() {
                 <FooterLink href="https://projects.laion.ai/Open-Assistant/docs/faq" label={t("faq")} />
               </Flex>
             </Box>
-          </nav>
+          </nav> */}
         </Box>
       </Box>
     </footer>
