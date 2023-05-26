@@ -73,7 +73,7 @@ const PrivacyPolicy = () => {
       sections: [
         {
           number: "3.1",
-          title: "Using the Website",
+          title: "Verkkosivuston käyttäminen",
           desc: "Kun käyttäjä rekisteröi tilin verkkosivustolle, ja tallennamme yksityisesti rekisteröidyn käyttäjän yksilöllisen sähköpostin. Kun käyttäjä lähettää vastauksia, yhdistämme jokaisen lähetetyn vastauksen yksilölliseen pseudonyymiin tunnukseen."
         },
       ],
@@ -119,7 +119,7 @@ const PrivacyPolicy = () => {
         {
           number: "7.4",
           title: "Oikeus tietojen poistamiseen (oikeus tulla unohdetuksi)",
-          desc: "You have the right to demand that the controller erase personal data concerning you without undue delay, and we are obligated to erase personal data without undue delay where one of the following grounds applies: the personal data are no longer necessary in relation to the purposes for which they were collected or otherwise processed, the data subject withdraws the consent on which the processing is based according to point (a) of Article 6(1), or point (a) of Article 9(2), and there is no other legal ground for the processing, the data subject objects to the processing pursuant to Article 21(1) GDPR and there are no overriding legitimate grounds for the processing, or the data subject objects to the processing pursuant to Article 21(2) GDPR, the personal data have been unlawfully processed, personal data must be erased for compliance with a legal obligation in Union or Member State law to which the controller is subject, the personal data was collected in relation to the offer of information society services referred to in Article 8(1) GDPR. If the controller has made the personal data public and is obliged pursuant to paragraph 1 to erase the personal data, the controller, taking account of available technology and the cost of implementation, shall take reasonable steps, including technical measures, to inform controllers which are processing the personal data that the data subject has requested the erasure by such controllers of any links to, or copy or replication of, that personal data. The right to erasure (“right to be forgotten“) does not apply to the extent that the processing is necessary: to exercise the right of freedom of expression and information, for compliance with a legal obligation which requires processing by Union or Member, State law to which the controller is subject or for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller, for reasons of public interest in the area of public health in accordance with points (h) and (i) of Article 9(2) as well as Article 9(3) GDPR, for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes in accordance with Article 89(1) GDPR in so far as the right referred to in paragraph 1 is likely to render impossible or seriously impair the achievement of the objectives of that processing; or for the establishment, exercise or defense of legal claims",
+          desc: "Sinulla on oikeus vaatia, että rekisterinpitäjä poistaa sinua koskevat henkilötiedot ilman aiheetonta viivytystä, ja olemme velvollisia poistamaan henkilötiedot ilman aiheetonta viivytystä, jos jokin seuraavista perusteista täyttyy: henkilötietoja ei enää tarvita niihin tarkoituksiin, joita varten ne kerättiin tai joita varten niitä muutoin käsiteltiin, rekisteröity peruuttaa suostumuksen, johon käsittely perustuu 6 artiklan 1 kohdan a alakohdan tai 9 artiklan 2 kohdan a alakohdan mukaisesti, eikä käsittelylle ole muuta laillista perustetta, rekisteröity vastustaa käsittelyä yleisen tietosuoja-asetuksen 21 artiklan 1 kohdan mukaisesti, eikä käsittelylle ole pakottavia oikeutettuja syitä, tai rekisteröity vastustaa käsittelyä yleisen tietosuoja-asetuksen 21 artiklan 2 kohdan mukaisesti, henkilötietoja on käsitelty lainvastaisesti, henkilötiedot on poistettava rekisterinpitäjään sovellettavan unionin tai jäsenvaltion lainsäädäntöön perustuvan oikeudellisen velvoitteen noudattamiseksi, henkilötiedot on kerätty yleisen tietosuoja-asetuksen 8 artiklan 1 kohdassa tarkoitettujen tietoyhteiskunnan palvelujen tarjoamisen yhteydessä. Jos rekisterinpitäjä on julkistanut henkilötiedot ja on 1 kohdan nojalla velvollinen poistamaan henkilötiedot, rekisterinpitäjän on käytettävissä oleva tekniikka ja toteutuskustannukset huomioon ottaen toteutettava kohtuulliset toimenpiteet, tekniset toimenpiteet mukaan lukien, ilmoittaakseen henkilötietoja käsitteleville rekisterinpitäjille, että rekisteröity on pyytänyt, että nämä rekisterinpitäjät poistavat kaikki kyseisiin henkilötietoihin johtavat linkit tai henkilötietojen kopiot tai jäljennökset. Oikeutta tietojen poistamiseen ('oikeus tulla unohdetuksi') ei sovelleta siltä osin kuin käsittely on välttämätöntä: sananvapauden ja tiedonvälityksen vapauden käyttämiseksi, sellaisen oikeudellisen velvoitteen noudattamiseksi, joka edellyttää käsittelyä rekisterinpitäjään sovellettavassa unionin tai jäsenvaltion lainsäädännössä, tai yleisen edun mukaisen tehtävän suorittamiseksi tai rekisterinpitäjälle kuuluvan julkisen vallan käyttämiseksi, yleisen edun vuoksi kansanterveyden alalla yleisen tietosuoja-asetuksen 9 artiklan 2 kohdan h ja i alakohdan sekä 9 artiklan 3 kohdan mukaisesti, yleisen edun mukaisia arkistointitarkoituksia, tieteellisiä tai historiallisia tutkimustarkoituksia tai tilastollisia tarkoituksia varten yleisen tietosuoja-asetuksen 89 artiklan 1 kohdan mukaisesti siltä osin kuin 1 kohdassa tarkoitettu oikeus todennäköisesti tekee mahdottomaksi tai vakavasti haittaa kyseisen käsittelyn tavoitteiden saavuttamista; tai oikeudellisten vaateiden laatimiseksi, esittämiseksi tai puolustamiseksi."
         },
         {
           number: "7.5",
@@ -165,13 +165,13 @@ const PrivacyPolicy = () => {
         <Box className="max-w-4xl mx-auto">
           <Stack spacing="6" mb="6">
             <Heading as="h1" size="xl" color="blue.500">
-              Privacy Policy
+              Tietosuojakäytänteet
             </Heading>
 
             <Box bg={backgroundColor} p="6" pt="4" borderRadius="xl" shadow="base">
               <Stack>
                 <Heading as="h3" size="lg">
-                  Overview
+                 Yleiskatsaus 
                 </Heading>
                 <Text>
                 Olemme iloisia, että olet kiinnostunut työstämme, ja toivotamme sinut tervetulleeksi hankkeesemme. 
