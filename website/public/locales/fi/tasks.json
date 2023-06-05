@@ -18,7 +18,7 @@
     "overview": "Kirjoita aloitusviesti, joka annetaan Open Assistantille",
     "instruction": "Kirjoita aloitusviesti",
     "response_placeholder": "Kirjoita kehotteesi tähän...",
-    "shortcut_tip": "Voit käyttää pikanäppäimiä Arvioidaksesi ja Lähettääksesi vastauksia:"
+    "shotcut_tip": "Voit käyttää pikanäppäimiä Arvioidaksesi ja Lähettääksesi vastauksia:"
   },
   "reply_as_user": {
     "label": "Vastaa käyttäjänä",
