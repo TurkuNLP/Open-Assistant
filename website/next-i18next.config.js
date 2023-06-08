@@ -3,8 +3,6 @@ module.exports = {
     defaultLocale: "fi",
     locales: [
       "fi",
-      "en",
-      "sv",
     ],
   },
 };

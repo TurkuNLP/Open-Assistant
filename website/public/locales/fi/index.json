@@ -1,6 +1,6 @@
 {
-  "blurb": "Uskomme, että voimme käynnistää vallankumouksen.",
-  "blurb1": "Siinä missä Stable Diffusion mahdollisti kuvien ja taiteen luomisen uusilla tavoilla, Open Assistant parantaa maailmaa toteuttamalla vapaan ja hyvän keskustelevan tekoälyn.",
+  "blurb": "Auta meitä kehittämään täysin suomenkielinen keskusteleva tekoäly!",
+  "blurb1": "TurkuNLP on Turun yliopistossa toimiva työryhmä, joka tutkii ja kehittää avointa kieliteknologiaa. Nyt kehitämme täysin suomenkielistä keskustelevaa tekoälyä. Keksimällä arkisia kysymyksiä ja vastaamalla niihin tekoälyn tavoin, voit auttaa meitä keräämään opetusdataa tekoälyn koulutusta varten.",
   "description": "Keskusteleva tekoäly kaikkien saataville. LAIONin ja osallistujien ympäri maailmaa projekti keskustelevan GPT-kielimallin luomiseksi.",
   "faq_items": {
     "q0": "Kuinka pitkällä projekti on?",
