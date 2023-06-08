@@ -55,7 +55,7 @@ def fetch_tree_ids(
 
     if limit is not None:
         tree_qry = tree_qry.limit(limit)
-
+    # print(tree_qry)
     return [(tree.message_tree_id, tree.state) for tree in tree_qry]
 
 

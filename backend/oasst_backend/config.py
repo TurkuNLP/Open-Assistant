@@ -178,9 +178,9 @@ class Settings(BaseSettings):
 
     POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: str = "5432"
-    POSTGRES_USER: str = "postgres"
+    POSTGRES_USER: str = os.environ["POSTGRES_USER"]
     POSTGRES_PASSWORD: str = os.environ["POSTGRES_PASSWORD"]
-    POSTGRES_DB: str = "postgres"
+    POSTGRES_DB: str = os.environ["POSTGRES_DB"]
     DATABASE_URI: Optional[PostgresDsn] = None
     DATABASE_MAX_TX_RETRY_COUNT: int = 3
 
@@ -201,7 +201,7 @@ class Settings(BaseSettings):
     DEBUG_ALLOW_DUPLICATE_TASKS: bool = False  # offer users tasks to which they already responded
     DEBUG_SKIP_EMBEDDING_COMPUTATION: bool = False
     DEBUG_SKIP_TOXICITY_CALCULATION: bool = False
-    DEBUG_DATABASE_ECHO: bool = False
+    DEBUG_DATABASE_ECHO: bool = True
     DEBUG_IGNORE_TOS_ACCEPTANCE: bool = (  # ignore whether users accepted the ToS
         True  # TODO: set False after ToS acceptance UI was added to web-frontend
     )

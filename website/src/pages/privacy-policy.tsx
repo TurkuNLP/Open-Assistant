@@ -69,7 +69,7 @@ const PrivacyPolicy = () => {
     {
       number: "3",
       title: "Keräämämmë tiedot",
-      desc: "Avoin Assistentti jäljittää tietoja seuraavissa olosuhteissa",
+      desc: "Avoin Avustaja jäljittää tietoja seuraavissa olosuhteissa",
       sections: [
         {
           number: "3.1",
