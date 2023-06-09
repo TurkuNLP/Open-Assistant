@@ -1,4 +1,4 @@
-import { Box, Button, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Button, Text, useColorMode, useBreakpointValue } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
@@ -11,6 +11,11 @@ export function Hero() {
   const { t } = useTranslation(["index", "common"]);
   const { ENABLE_CHAT } = useBrowserConfig();
   const { colorMode } = useColorMode();
+
+  const dashboard_button_size = useBreakpointValue({base: '4.5em', md: '200'}, {fallback: '200'})
+  const other_button_size = useBreakpointValue({base: '1em', lg: '2em'}, {fallback: '200'})
+
+
   const pTextColor = colorMode === "light" ? "text-gray-600" : "text-white";
   const fancyTextGradientClasses =
     colorMode === "light" ? "from-blue-600 via-sky-400 to-blue-700" : "from-blue-500 via-sky-300 to-blue-400";
@@ -30,24 +35,32 @@ export function Hero() {
             </Text>
             <Text className={`mt-6 text-lg ${pTextColor}`}>{t("blurb")}</Text>
             <Text className={`mt-6 text-lg ${pTextColor}`}>{t("blurb1")}</Text>
+            <Text className={`mt-6 text-lg ${pTextColor}`}>
+              Sivustomme pohjautuu avoimeen OpenAssistant-projektiin, mutta toimintamme ei muuten liity heihin. 
+            </Text>
             <Box className={`mt-6 flex gap-6 ${pTextColor} flex-wrap`}>
-              {ENABLE_CHAT && (
+              {/* {ENABLE_CHAT && (
                 <Link href="/chat" aria-label="Chat">
                   <Button variant="solid" colorScheme="blue" px={5} py={6}>
                     {t("index:try_our_assistant")}
                   </Button>
                 </Link>
-              )}
+              )} */}
               <Link href="/dashboard" aria-label="Dashboard">
-                <Button variant="outline" colorScheme="blue" fontSize="xl"  px={200} py={100}>
+                <Button variant="outline" colorScheme="blue" fontSize="xl"  px={dashboard_button_size} py={100}>
                   {t("index:help_us_improve")}
                 </Button>
               </Link>
-              {/* <Link href="https://turkunlp.org/" aria-label="Hugging face">
-                <Button variant="outline" px={5} py={6}>
+              <Link href="https://turkunlp.org/" aria-label="Hugging face">
+                <Button variant="solid" colorScheme="blue"  px={other_button_size} py={6}>
                   {t("index:hugging_face_link")}
                 </Button>
-              </Link> */}
+              </Link>
+              <Link href="https://open-assistant.io/" aria-label="Open-Assistant">
+                <Button variant="solid" colorScheme="blue"  px={other_button_size} py={6}>
+                  {t("index:open_assistant_link")}
+                </Button>
+              </Link>
             </Box>
           </Box>
           <Box className="relative mt-10 sm:mt-20 lg:col-span-5 lg:row-span-2 lg:mt-0 xl:col-span-6">

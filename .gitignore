@@ -7,6 +7,7 @@ venv
 *.egg-info
 __pycache__
 .DS_Store
+website/.env
 
 datadumps/
 

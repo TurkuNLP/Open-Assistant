@@ -41,9 +41,11 @@ export function Footer() {
                 {t("conversational")}
               </Text>
             </Box>
+ 
+
           </Flex>
 
-          {/* <nav>
+          <nav>
             <Box display="flex" flexDirection={["column", "row"]} gap={["6", "14"]} fontSize="sm">
               <Flex direction="column" alignItems={["center", "start"]}>
                 <Text fontWeight="bold" color={textColor}>
@@ -54,22 +56,21 @@ export function Footer() {
               </Flex>
               <Flex direction="column" alignItems={["center", "start"]}>
                 <Text fontWeight="bold" color={textColor}>
-                  {t("connect")}
+                  {"Tietoa meistä"}
                 </Text>
-                <FooterLink href="https://github.com/LAION-AI/Open-Assistant" label={t("github")} />
-                <FooterLink href="https://ykilcher.com/open-assistant-discord" label={t("discord")} />
-                <FooterLink href="https://huggingface.co/OpenAssistant" label={t("hugging_face")} />
+                <FooterLink href="https://turkunlp.org" label={"TurkuNLP.org"} />
+                <FooterLink href="https://huggingface.co/TurkuNLP" label={t("hugging_face")} />
+                <FooterLink href="https://turkunlp.org/people.html" label={"Ketä on TurkuNLP?"} />
               </Flex>
               <Flex direction="column" alignItems={["center", "start"]}>
                 <Text fontWeight="bold" color={textColor}>
-                  {t("about")}
+                  {"Ohjeistus [englanniksi]"}
                 </Text>
-                <FooterLink href="/team" label={t("who_are_we")} />
-                <FooterLink href="https://projects.laion.ai/Open-Assistant" label={t("docs")} />
-                <FooterLink href="https://projects.laion.ai/Open-Assistant/docs/faq" label={t("faq")} />
+                <FooterLink href="https://projects.laion.ai/Open-Assistant" label={"Dokumentaatio"} />
+                <FooterLink href="https://projects.laion.ai/Open-Assistant/docs/faq" label={"Usein kysytyt kysymykset"} />
               </Flex>
             </Box>
-          </nav> */}
+          </nav>
         </Box>
       </Box>
     </footer>
