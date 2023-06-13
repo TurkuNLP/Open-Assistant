@@ -59,6 +59,7 @@ export function Hero() {
               <Link href="https://open-assistant.io/" aria-label="Open-Assistant">
                 <Button variant="solid" colorScheme="blue"  px={other_button_size} py={6}>
                   {t("index:open_assistant_link")}
+                  {/* {t("index:open_assistant_link")} */}
                 </Button>
               </Link>
             </Box>

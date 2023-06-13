@@ -13,7 +13,7 @@ const TermsData = [
       {
         number: "1.1",
         title: "",
-        desc: `TurkuNLP, Turun yliopisto, Vesilinnantie 3, 20014 Turku, Suomi (jäljempänä 'TurkuNLP') ylläpitää verkkoportaalia, jolla voidaan tuottaa Open Assistant -niminen koneoppimismalli yleisön tarjoamien tietojen avulla.`,
+        desc: `TurkuNLP, Turun yliopisto, Vesilinnantie 3, 20014 Turku, Suomi (jäljempänä 'TurkuNLP') ylläpitää verkkoportaalia, jolla voidaan tuottaa Avoin Assistentti-niminen koneoppimismalli yleisön tarjoamien tietojen avulla.`,
       },
       {
         number: "1.2",

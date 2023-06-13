@@ -10,41 +10,41 @@
   "no_more_tasks": "Uusia tehtäviä ei löytynyt. Yritä myöhemmin uudelleen.",
   "random": {
     "label": "Kokeilen onneani",
-    "desc": "Auta meitä parantamaan Open Assistantia suorittamalla satunnainen tehtävä."
+    "desc": "Auta meitä parantamaan Avointa Avustajaa suorittamalla satunnainen tehtävä."
   },
   "create_initial_prompt": {
     "label": "Luo aloitusviestejä",
-    "desc": "Kirjoita aloitusviestejä auttaaksesi Open Assistantia vastaamaan monimuotoisiin kysymyksiin. (jotka lisätään arvontaan)",
-    "overview": "Kirjoita aloitusviesti, joka annetaan Open Assistantille",
+    "desc": "Kirjoita aloitusviestejä auttaaksesi Avointa Avustajaa vastaamaan monimuotoisiin kysymyksiin. (jotka lisätään arvontaan)",
+    "overview": "Kirjoita aloitusviesti, joka annetaan Avoimelle Avustajalle",
     "instruction": "Kirjoita aloitusviesti",
     "response_placeholder": "Kirjoita kehotteesi tähän...",
     "shotcut_tip": "Voit käyttää pikanäppäimiä Arvioidaksesi ja Lähettääksesi vastauksia:"
   },
   "reply_as_user": {
     "label": "Vastaa käyttäjänä",
-    "desc": "Keskustele Open Assistantin kanssa ja auta parantamaan sen vastauksia.",
+    "desc": "Keskustele Avoimen Avustajan kanssa ja auta parantamaan sen vastauksia.",
     "overview": "Vastaa annettuun keskusteluun sopivalla tavalla",
     "instruction": "Kirjoita käyttäjän vastaus",
     "response_placeholder": "Kirjoita vastauksesi tähän..."
   },
   "reply_as_assistant": {
-    "label": "Vastaa assistenttina",
-    "desc": "Auta Open Assistantia parantamaan vastauksiaan sen keskustellessa käyttäjien kanssa.",
+    "label": "Vastaa avustajana",
+    "desc": "Auta Avointa Avustajaa parantamaan vastauksiaan sen keskustellessa käyttäjien kanssa.",
     "overview": "Vastaa annettuun keskusteluun sopivalla tavalla",
     "response_placeholder": "Kirjoita vastauksesi tähän..."
   },
   "rank_user_replies": {
     "label": "Järjestä käyttäjien vastaukset",
-    "desc": "Auta Open Assistantia parantamaan vastauksiaan sen keskustellessa käyttäjien kanssa.",
+    "desc": "Auta Avointa Avustajaa parantamaan vastauksiaan sen keskustellessa käyttäjien kanssa.",
     "overview": "Järjestä annetut käyttäjien vastaukset siten, että paras on ensimmäisenä ja huonoin viimeisenä.",
     "unchanged_title": "Järjestys ei muuttunut",
     "unchanged_message": "Et muuttanut kehotteiden järjestystä. Haluatko varmasti jatkaa?",
     "continue_anyway": "Jatka tästä huolimatta"
   },
   "rank_assistant_replies": {
-    "label": "Järjestä assistentin vastaukset",
-    "desc": "Arvioi Open Assistantin kirjoittamia viestejä niiden tarkkuuden ja luotettavuuden mukaan.",
-    "overview": "Järjestä annetut assistentin vastaukset siten, että paras on ensimmäisenä ja huonoin viimeisenä.",
+    "label": "Järjestä avustajan vastaukset",
+    "desc": "Arvioi Avoimen Avustajan kirjoittamia viestejä niiden tarkkuuden ja luotettavuuden mukaan.",
+    "overview": "Järjestä annetut avustajan vastaukset siten, että paras on ensimmäisenä ja huonoin viimeisenä.",
     "unchanged_title": "Järjestys ei muuttunut",
     "unchanged_message": "Et muuttanut kehotteiden järjestystä. Haluatko varmasti jatkaa?",
     "continue_anyway": "Jatka tästä huolimatta"
@@ -68,8 +68,8 @@
     "overview": "Arvioi seuraavan keskustelun viimeinen viesti."
   },
   "label_assistant_reply": {
-    "label": "Arvioi assistentin vastaus",
-    "desc": "Arvioi assistentin vastausviesti.",
+    "label": "Arvioi avustajan vastaus",
+    "desc": "Arvioi avustajan vastausviesti.",
     "overview": "Arvioi seuraavan keskustelun viimeinen viesti."
   },
   "classify_initial_prompt": {
@@ -83,7 +83,7 @@
     "overview": "Lue seuraava viestiketju ja vastaa sen viimeiseen viestiin liittyviin kysymyksiin."
   },
   "classify_assistant_reply": {
-    "label": "Arvioi assistentin vastaus",
+    "label": "Arvioi avustajan vastaus",
     "desc": "Arvioi viesti.",
     "overview": "Lue seuraava viestiketju ja vastaa sen viimeiseen viestiin liittyviin kysymyksiin."
   },

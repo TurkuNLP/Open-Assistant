@@ -34,7 +34,7 @@ const StatusIndex = () => {
   return (
     <>
       <Head>
-        <title>Status - Open Assistant</title>
+        <title>Status - Avoin Avustaja</title>
       </Head>
 
       <AdminArea>

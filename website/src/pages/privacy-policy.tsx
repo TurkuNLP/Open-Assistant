@@ -158,8 +158,8 @@ const PrivacyPolicy = () => {
   return (
     <>
       <Head>
-        <title>Privacy Policy - Open Assistant</title>
-        <meta name="description" content="Open Assistant's Privacy Policy" />
+        <title>Tietosuojaseloste - Avoin Avustaja</title>
+        <meta name="description" content="Avoimen Avustajan tietosuojaseloste" />
       </Head>
       <Box p="6" className="oa-basic-theme">
         <Box className="max-w-4xl mx-auto">

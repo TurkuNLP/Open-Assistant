@@ -8,12 +8,12 @@ const TermsOfServicePage = () => {
     <>
       <Head>
         <title>Terms of Service - Open Assistant</title>
-        <meta name="description" content="Open Assistant's Terms of Service" />
+        <meta name="description" content="Avoimen Avustajan palveluehdot" />
       </Head>
       <Box p="6" className="oa-basic-theme">
         <Box className="max-w-4xl mx-auto">
           <Heading as="h1" size="xl" color="blue.500" mb="6">
-            Terms of Service
+            Terms Of Service - Palveluehdot
           </Heading>
           <TermsOfService />
         </Box>

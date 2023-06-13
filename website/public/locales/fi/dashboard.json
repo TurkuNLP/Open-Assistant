@@ -8,7 +8,7 @@
   "welcome_message": {
     "label": "Tervetuloa, {{username}}!",
     "contributor": "Osallistuja",
-    "description": "Open Assistant on avoimen lähdekoodin tekoälyassistentti, joka käyttää ja kouluttaa kehittyneitä kielimalleja ymmärtääkseen ja vastatakseen ihmisille.",
+    "description": "Avoin Avustaja on avoimen lähdekoodin tekoälyassistentti, joka koulutetaan vastaamaan kysymyksiin ja auttamaan tehtävissä.",
     "instruction": "Suorita tehtäviä kouluttaaksesi kielimallia ja ansaitaksesi pisteitä."
   }
 }
