@@ -514,20 +514,47 @@ class Vicuna(Dataset):
     def __init__(self, cache_dir: str | Path, mode: str = "sft", input_max_length: int = 32 * 1024) -> None:
         super().__init__()
 
-        self.pairs = []
-        if mode not in ("sft", "rl"):
-            raise NotImplementedError(f"Currently only the modes 'sft' and 'rl' are implemented. Received {mode}.")
+        if mode != "sft":
+            raise NotImplementedError(f"Currently only the mode 'sft' is implemented. Received {mode}.")
         self.mode = mode
 
         dataset = load_dataset(
-            "gozfarb/ShareGPT_Vicuna_unfiltered",
+            "Aeala/ShareGPT_Vicuna_unfiltered",
             cache_dir=cache_dir,
-            data_files=["ShareGPT_2023.05.02v0_unfiltered_cleaned_split.json"],
-            revision="7b8551404f3de5704d634e7516b9ff77be3e2700",
+            data_files=["ShareGPT_V4.3_unfiltered_cleaned_split.json"],
         )["train"]
 
+        self.pairs = []
         for data in dataset:
             if (qa := self.process_vicuna_conversations(data, input_max_length=input_max_length)) is not None:
+                if len(qa[0]) > 0 and len(qa[0]) == len(qa[1]):
+                    self.pairs.append(create_dataset_entry_qa(mode=self.mode, questions=qa[0], answers=qa[1]))
+
+    def __len__(self) -> int:
+        return len(self.pairs)
+
+    def __getitem__(self, index: int) -> DatasetEntry:
+        return self.pairs[index]
+
+
+class WizardEvolInstructV2(Dataset):
+    def __init__(self, cache_dir: str | Path, mode: str = "sft", input_max_length: int = 32 * 1024) -> None:
+        super().__init__()
+
+        if mode != "sft":
+            raise NotImplementedError(f"Currently only the mode 'sft' is implemented. Received {mode}.")
+        self.mode = mode
+
+        dataset = load_dataset(
+            "ehartford/WizardLM_evol_instruct_V2_196k_unfiltered_merged_split",
+            cache_dir=cache_dir,
+            data_files=["WizardLM_evol_instruct_V2_196k_unfiltered_merged_split.json"],
+            revision="34f04cfbc280da93a79ad9ecf339923f9411c1fc",
+        )["train"]
+
+        self.pairs = []
+        for data in dataset:
+            if (qa := Vicuna.process_vicuna_conversations(data, input_max_length=input_max_length)) is not None:
                 if len(qa[0]) > 0 and len(qa[0]) == len(qa[1]):
                     self.pairs.append(create_dataset_entry_qa(mode="sft", questions=qa[0], answers=qa[1], lang="en"))
 
@@ -563,6 +590,43 @@ class DatabricksDolly15k(Dataset):
                 questions=[row["INSTRUCTION"]],
                 answers=[row["RESPONSE"]],
                 context=context,
+            )
+
+    def __len__(self) -> int:
+        return len(self.rows)
+
+    def __getitem__(self, index: int) -> DatasetEntry:
+        dialogue = self.rows[index]
+        return dialogue
+
+
+class Dolly15kMultilingual(Dataset):
+    def __init__(self, cache_dir: str | Path, mode: str = "sft") -> None:
+        super().__init__()
+        self.rows = []
+        self.citation_regex = re.compile(r"\[[a-zA-Z]\]")  # removes citations in the form of e.g. [a] or [A]
+        if mode not in ("sft", "rl"):
+            raise NotImplementedError(f"Currently only the modes 'sft' and 'rl' are implemented. Received {mode}.")
+        self.mode = mode
+        splits = load_dataset("argilla/databricks-dolly-15k-curated-multilingual", cache_dir=cache_dir)
+        for lang in ("en", "de", "es", "fr"):
+            data = splits[lang]
+            for line in data:
+                if (c := self._process_instruction(line, lang=lang)) is not None:
+                    self.rows.append(c)
+
+    def _process_instruction(self, row: dict[str, str], lang: str) -> DatasetEntry | None:
+        context = re_reference_remove.sub("", row["context"])
+        # further remove references
+        context = context.replace("[citation needed]", "")
+        context = self.citation_regex.sub("", context)
+        if _filter_by_words(row["instruction"]) and _filter_by_words(row["response"]):
+            return create_dataset_entry_qa(
+                mode=self.mode,
+                questions=[row["instruction"]],
+                answers=[row["response"]],
+                context=context,
+                lang=lang,
             )
 
     def __len__(self) -> int:

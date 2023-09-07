@@ -20,7 +20,8 @@
     "button": "Opt out of training data",
     "success_message": "You have opted out of training data.",
     "dialog": {
-      "title": "Confirm opting of training data"
+      "title": "Are you sure you want to opt this chat out of the training data?",
+      "description": "If you confirm, this chat won't be used for improving our model. Please take the time to upvote and downvote responses in other chats to help us make Open Assistant better!"
     }
   },
   "parameter_description": {
@@ -32,6 +33,7 @@
     "typical_p": "Typical p: Typical sampling is an information-theoretic technique that, in addition to the probability, also considers the sequence entropy (i.e., the information content according to the probability). This means that typical sampling \"overweights\" some of the tokens with lower probability because they are deemed \"interesting,\" and underweights high probability tokens because they are deemed \"boring.\""
   },
   "plugin_url_placeholder": "Enter plugin URL",
+  "plugin_repositories": "Plugin Repositories",
   "plugins": "Plugins",
   "preset": "Preset",
   "preset_custom": "Custom",
@@ -59,5 +61,10 @@
   "preset_name_placeholder": "Enter name",
   "feedback_message": "How did I do? Your feedback will make me better!",
   "feedback_action_great": "Good",
-  "feedback_action_poor": "Could be better"
+  "feedback_action_poor": "Could be better",
+  "custom_instructions": "Custom instructions",
+  "custom_instructions_user_profile": "What info should Open-Assistant have about you to make its replies even better?",
+  "custom_instructions_response_instructions": "How do you want Open-Assistant to chat with you?",
+  "custom_instructions_user_profile_placeholder": "List some of your aspirations.\nDescribe your hobbies and interests.\nShare your location.\nWhat is your occupation?\nWhich topics could you discuss extensively?",
+  "custom_instructions_response_instructions_placeholder": "Should Open-Assistant express opinions or maintain neutrality?\nSpecify the desired formality level for Open-Assistant's responses.\nHow should Open-Assistant address you?\nDetermine the preferred length of responses."
 }

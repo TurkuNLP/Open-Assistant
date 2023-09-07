@@ -8,7 +8,7 @@ import SimpleBar from "simplebar-react";
 import { useMessageVote } from "src/hooks/chat/useMessageVote";
 import { useBrowserConfig } from "src/hooks/env/BrowserEnv";
 import { get, post } from "src/lib/api";
-import { handleChatEventStream, QueueInfo, PluginIntermediateResponse } from "src/lib/chat_stream";
+import { handleChatEventStream, PluginIntermediateResponse, QueueInfo } from "src/lib/chat_stream";
 import { OasstError } from "src/lib/oasst_api_client";
 import { API_ROUTES } from "src/lib/routes";
 import {
@@ -52,32 +52,38 @@ export const ChatConversation = memo(function ChatConversation({ chatId, getConf
 
   const toast = useToast();
 
-  const { isLoading: isLoadingMessages } = useSWR<ChatItem>(chatId ? API_ROUTES.GET_CHAT(chatId) : null, get, {
-    onSuccess(data) {
-      setMessages(data.messages.sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)));
-      setActiveThreadTailMessageId(data.active_thread_tail_message_id);
-    },
-    onError: (err) => {
-      if (err instanceof OasstError && err.httpStatusCode === 404) {
-        // chat does not exist, probably deleted
-        return router.push("/chat");
-      }
-      toast({
-        title: "Failed to load chat",
-        status: "error",
-      });
-    },
-  });
+  const { isLoading: isLoadingMessages, data: chatData } = useSWR<ChatItem>(
+    chatId ? API_ROUTES.GET_CHAT(chatId) : null,
+    get,
+    {
+      onSuccess(data) {
+        setMessages(data.messages.sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)));
+        setActiveThreadTailMessageId(data.active_thread_tail_message_id);
+      },
+      onError: (err) => {
+        if (err instanceof OasstError && err.httpStatusCode === 404) {
+          // chat does not exist, probably deleted
+          return router.push("/chat");
+        }
+        toast({
+          title: "Failed to load chat",
+          status: "error",
+        });
+      },
+    }
+  );
 
   const createAndFetchAssistantMessage = useCallback(
     async ({ parentId, chatId }: { parentId: string; chatId: string }) => {
-      const { model_config_name, plugins, ...sampling_parameters } = getConfigValues();
+      const { model_config_name, plugins, custom_instructions, ...sampling_parameters } = getConfigValues();
       const assistant_arg: InferencePostAssistantMessageParams = {
         chat_id: chatId,
         parent_id: parentId,
         model_config_name,
         sampling_parameters,
         plugins,
+        user_profile: custom_instructions?.user_profile,
+        user_response_instructions: custom_instructions?.user_response_instructions,
       };
 
       let assistant_message: InferenceMessage;
@@ -136,7 +142,7 @@ export const ChatConversation = memo(function ChatConversation({ chatId, getConf
   );
   const createAssistantDrafts = useCallback(
     async ({ parentId, chatId }: { parentId: string; chatId: string }) => {
-      const { model_config_name, plugins, ...sampling_parameters } = getConfigValues();
+      const { model_config_name, plugins, custom_instructions, ...sampling_parameters } = getConfigValues();
 
       const assistant_arg: InferencePostAssistantMessageParams = {
         chat_id: chatId,
@@ -144,6 +150,8 @@ export const ChatConversation = memo(function ChatConversation({ chatId, getConf
         model_config_name: model_config_name,
         sampling_parameters: sampling_parameters,
         plugins: plugins,
+        user_profile: custom_instructions?.user_profile,
+        user_response_instructions: custom_instructions?.user_response_instructions,
       };
 
       let draft_messages: InferenceMessage[];
@@ -306,7 +314,11 @@ export const ChatConversation = memo(function ChatConversation({ chatId, getConf
       setReytryingParentId(params.parentId);
 
       const { plugins } = getConfigValues();
-      if ((!ENABLE_DRAFTS_WITH_PLUGINS && plugins.length !== 0) || NUM_GENERATED_DRAFTS <= 1) {
+      if (
+        (!ENABLE_DRAFTS_WITH_PLUGINS && plugins.length !== 0) ||
+        NUM_GENERATED_DRAFTS <= 1 ||
+        !chatData.allow_data_use
+      ) {
         await createAndFetchAssistantMessage(params);
         setReytryingParentId(null);
       } else {
@@ -320,6 +332,7 @@ export const ChatConversation = memo(function ChatConversation({ chatId, getConf
       ENABLE_DRAFTS_WITH_PLUGINS,
       NUM_GENERATED_DRAFTS,
       createAndFetchAssistantMessage,
+      chatData?.allow_data_use,
     ]
   );
   const handleOnVote: ChatMessageEntryProps["onVote"] = useCallback(
@@ -467,9 +480,10 @@ export const ChatConversation = memo(function ChatConversation({ chatId, getConf
             isSending={isSending}
             retryingParentId={retryingParentId}
             activeThreadTailMessageId={activeThreadTailMessageId}
-            onEditPromtp={handleEditPrompt}
+            onEditPrompt={handleEditPrompt}
             showEncourageMessage={showEncourageMessage}
             onEncourageMessageClose={setShowEncourageMessage.off}
+            showFeedbackOptions={chatData?.allow_data_use}
           ></ChatConversationTree>
           {isSending && streamedResponse && <PendingMessageEntry isAssistant content={streamedResponse} />}
           {(isSending || isAwaitingMessageSelect) &&

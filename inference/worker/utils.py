@@ -11,7 +11,6 @@ import requests
 import sseclient
 import transformers
 import websocket
-from chat_chain_prompts import V2_PROMPTER_PREFIX
 from loguru import logger
 from oasst_shared.schemas import inference
 from settings import settings
@@ -19,7 +18,31 @@ from settings import settings
 shared_tokenizer_lock = threading.Lock()
 
 
+if settings.model_prompt_format == "chatml":
+    special_tokens = {
+        "prompter": "<|im_start|>user\n",
+        "assistant": "<|im_start|>assistant\n",
+        "system": "<|im_start|>system\n",
+        "end": "<|im_end|>\n",
+    }
+else:
+    special_tokens = {
+        "prompter": "<|prompter|>",
+        "assistant": "<|assistant|>",
+        "system": "<|system|>",
+        "end": "",
+    }
+
+
 class TokenBuffer:
+    """
+    A buffer for storing and managing tokens based on various conditions including stop sequences.
+
+    The TokenBuffer class accumulates tokens while keeping track of the length and manages the tokens based on the stop
+    sequences provided during initialization. Tokens can be added to the buffer and later on iterated upon finishing
+    depending on the reason.
+    """
+
     def __init__(self, stop_sequences: list[str]) -> None:
         self.stop_sequences = stop_sequences
         self.longest_stop_len = max((len(stop) for stop in stop_sequences), default=1)
@@ -65,10 +88,21 @@ class TokenBuffer:
 
 
 def get_max_input_length(worker_config: inference.WorkerConfig, plugin_used: bool):
+    """Get the maximum possible input length based on the worker config and whether a plugin is in use."""
     max_input_length = worker_config.model_config.max_input_length
     if plugin_used:
         max_input_length = max_input_length - 1
     return max_input_length
+
+
+def get_tokens_until(tokens: list[int], target: list[int]) -> list[int]:
+    if len(target) == 1:
+        return tokens[: tokens.index(target[0])]
+
+    for i in range(len(tokens) - len(target)):
+        if tokens[i : i + len(target)] == target:
+            break
+    return tokens[:i]
 
 
 def truncate_prompt(
@@ -78,21 +112,46 @@ def truncate_prompt(
     prompt: str,
     plugin_used: bool,
 ):
+    """
+    Truncate a prompt to ensure it does not exceed the maximum input length. Regardless of truncation, the system
+    prompt is always retained if it is present. If truncation removes the final prompter prefix, a new one is added.
+
+    The stream generation parameters are also updated with a maximum new tokens value which will not cause the total
+    length to exceed the maximum specified in the worker's model config.
+    """
     with shared_tokenizer_lock:
         ids = tokenizer.encode(prompt)
+        # list of int IDs
+        prompter_prefix_ids = tokenizer.encode(special_tokens["prompter"])
+
+    system_prompt: str | None = None
+    system_tokens: list[int] | None = None
+    if prompt.startswith(special_tokens["system"]):
+        system_prompt = prompt[: prompt.index(special_tokens["prompter"])]
+        system_tokens = get_tokens_until(ids, prompter_prefix_ids)
 
     max_input_length = get_max_input_length(worker_config, plugin_used)
 
     if len(ids) > max_input_length:
         logger.debug(f"Prompt too long, left-truncating to {max_input_length} tokens")
-        ids = ids[-(max_input_length - 1) :]
+
+        num_system_tokens = len(system_tokens) if system_tokens else 0
+        # Maximum token allowed for the conversation, ex system prompt
+        # We incorporate a buffer to allow for final inference tokenization differing from ours
+        # This is a slightly hacky workaround and it would be better to find a cleaner solution
+        max_conversation_length = max_input_length - num_system_tokens - int(0.01 * max_input_length)
+        ids = ids[-(max_conversation_length - 1) :]
 
         with shared_tokenizer_lock:
             prompt = tokenizer.decode(ids)
 
-            if V2_PROMPTER_PREFIX not in prompt:
-                prompt = V2_PROMPTER_PREFIX + prompt
-                ids = tokenizer.encode(V2_PROMPTER_PREFIX) + ids
+            if special_tokens["prompter"] not in prompt:
+                prompt = special_tokens["prompter"] + prompt
+                ids = tokenizer.encode(special_tokens["prompter"]) + ids
+
+            if system_tokens:
+                prompt = system_prompt + prompt
+                ids = system_tokens + ids
 
     max_total_tokens = worker_config.model_config.max_total_length
     input_length = len(ids)
@@ -108,6 +167,7 @@ def truncate_prompt(
 
 
 def wait_for_inference_server(http: "HttpClient", timeout: int = 600):
+    """Wait for the "health" endpoint of the inference server to return status 200."""
     time_limit = time.time() + timeout
     while True:
         try:
@@ -124,7 +184,13 @@ def wait_for_inference_server(http: "HttpClient", timeout: int = 600):
             break
 
 
-def text_to_events(text: str, seed: int | None = None, pause: float = 0.0):
+def text_to_events(
+    text: str, seed: int | None = None, pause: float = 0.0
+) -> Iterable[interface.GenerateStreamResponse]:
+    """
+    Iterate over stream generation "events" derived from the given text, where each word in the text is treated as a
+    generated "token".
+    """
     tokens = text.split()
     for token in tokens[:-1]:
         yield interface.GenerateStreamResponse(
@@ -169,6 +235,8 @@ def send_response(
 
 
 class HttpClient(pydantic.BaseModel):
+    """Basic HTTP client built around `requests`. Supports simple authentication."""
+
     base_url: str
     basic_auth_username: str | None = None
     basic_auth_password: str | None = None
@@ -197,7 +265,10 @@ class HttpClient(pydantic.BaseModel):
         return requests.post(self.base_url + path, auth=self.auth, **kwargs)
 
 
-def get_inference_server_stream_events(request: interface.GenerateStreamRequest):
+def get_inference_server_stream_events(
+    request: interface.GenerateStreamRequest,
+) -> Iterable[interface.GenerateStreamResponse]:
+    """Query the model inference server specified in the worker settings and stream the generation events."""
     http = HttpClient(
         base_url=settings.inference_server_url,
         basic_auth_username=settings.basic_auth_username,

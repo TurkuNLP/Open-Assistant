@@ -1,4 +1,7 @@
-# a basic fastapi server to run generation on HF models
+"""
+Basic FastAPI server to serve models using HuggingFace Transformers library.
+This is an alternative to running the HuggingFace `text-generation-inference` (tgi) server.
+"""
 
 import sys
 import threading
@@ -48,6 +51,7 @@ model_input_queue: Queue = Queue()
 
 
 def model_thread():
+    """Continually obtain new work requests from the model input queue and work on them."""
     model: transformers.PreTrainedModel
     tokenizer: transformers.PreTrainedTokenizer
     model, tokenizer, decode_token = load_models()
@@ -134,7 +138,7 @@ def load_models():
     hf_config = transformers.AutoConfig.from_pretrained(model_config.model_id)
     logger.warning(f"Loading model {model_config.model_id}...")
     tokenizer = transformers.AutoTokenizer.from_pretrained(model_config.model_id)
-    logger.warning(f"tokenizer {tokenizer.name_or_path} has vocab size {tokenizer.vocab_size}")
+    logger.warning(f"tokenizer {tokenizer.name_or_path} has vocab size {len(tokenizer)}")
 
     # see `decode_token` method, taken from HF text-generation-inference
     tokenizer.add_special_tokens({"additional_special_tokens": ["<decode-token>"]})

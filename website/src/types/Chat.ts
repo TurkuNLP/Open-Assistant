@@ -21,6 +21,7 @@ export interface ChatItem {
   created_at: string; //timestamp
   modified_at: string; //timestamp
   messages: InferenceMessage[];
+  allow_data_use: boolean;
 
   // those are not available when you first create a chat
   title?: string;
@@ -42,6 +43,8 @@ export interface InferenceMessage {
     do_sample: boolean;
     seed: number;
     sampling_parameters: SamplingParameters;
+    user_profile: string;
+    user_response_instructions: string;
     model_config: {
       model_id: string;
       max_input_length: number;
@@ -108,6 +111,11 @@ export type ModelParameterConfig = {
   sampling_parameters: SamplingParameters;
 };
 
+export type CustomInstructionsType = {
+  user_profile: string;
+  user_response_instructions: string;
+};
+
 export interface SamplingParameters {
   max_new_tokens: number | null;
   repetition_penalty: number | null;
@@ -120,6 +128,7 @@ export interface SamplingParameters {
 export interface ChatConfigFormData extends SamplingParameters {
   model_config_name: string; // this is the same as ModelParameterConfig.name
   plugins: PluginEntry[];
+  custom_instructions: CustomInstructionsType;
 }
 
 export interface InferencePostPrompterMessageParams {
@@ -133,6 +142,8 @@ export interface InferencePostAssistantMessageParams {
   parent_id: string;
   model_config_name: string;
   sampling_parameters: SamplingParameters;
+  user_profile: string;
+  user_response_instructions: string;
   plugins: PluginEntry[];
 }
 
