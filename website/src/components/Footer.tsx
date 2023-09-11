@@ -41,8 +41,6 @@ export function Footer() {
                 {t("conversational")}
               </Text>
             </Box>
- 
-
           </Flex>
 
           <nav>
@@ -67,7 +65,10 @@ export function Footer() {
                   {"Ohjeistus [englanniksi]"}
                 </Text>
                 <FooterLink href="https://projects.laion.ai/Open-Assistant" label={"Dokumentaatio"} />
-                <FooterLink href="https://projects.laion.ai/Open-Assistant/docs/faq" label={"Usein kysytyt kysymykset"} />
+                <FooterLink
+                  href="https://projects.laion.ai/Open-Assistant/docs/faq"
+                  label={"Usein kysytyt kysymykset"}
+                />
               </Flex>
             </Box>
           </nav>

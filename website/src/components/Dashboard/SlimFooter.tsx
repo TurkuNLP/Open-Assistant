@@ -10,7 +10,15 @@ export function SlimFooter() {
     <footer>
       <Divider />
       <Box display="flex" gap="4" flexDir="column" alignItems="center" my="8">
-        <Box display="flex" justifyContent="center" alignItems="center" h="20" minWidth="70" bg="gray.200" borderRadius="20%">
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          h="20"
+          minWidth="70"
+          bg="gray.200"
+          borderRadius="20%"
+        >
           <Link href="/" aria-label="Home" className="flex items-center gap-1">
             <Image src="/images/logos/logo.png" className="mx-auto object-fill" width="48" height="48" alt="logo" />
           </Link>

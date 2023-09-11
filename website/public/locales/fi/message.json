@@ -2,6 +2,7 @@
   "confirm_open_link_body": "Haluatko avata tämän linkin?",
   "confirm_open_link_header": "Avaa linkki",
   "copy_message_id": "Kopioi viestin ID",
+  "copy_message_text": "Kopioi viestin teksti",
   "copy_message_link": "Kopioi linkki viestiin",
   "label_action": "Lajittele",
   "label_title": "Nimike",
@@ -17,10 +18,14 @@
   "report_action": "Raportoi",
   "report_placeholder": "Miksi tämä viesti tulisi arvioida?",
   "report_title": "Raportoi",
+  "restart_tree": "Aloita viestiketju uudestaan",
   "send_report": "Lähetä",
   "stop_tree": "Lopeta viestiketju",
   "submit_labels": "Lähetä",
+  "tree_restarted": "Viestiketju uudelleenaloitettu {{id}}",
   "tree_stopped": "Viestiketju lopetettu {{id}}",
   "view_user": "Näytä käyttäjä",
-  "your_recent_messages": "Viimeisimmät viestisi"
+  "your_recent_messages": "Viimeisimmät viestisi",
+  "synthetic": "Synteettinen",
+  "synthetic_explain": "Tämä viesti on tekoälyn tuotos"
 }
