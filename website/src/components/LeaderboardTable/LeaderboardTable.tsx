@@ -119,7 +119,7 @@ export const LeaderboardTable = ({
   }
 
   if (error) {
-    return <span>Unable to load leaderboard</span>;
+    return <span>Tulostaulukon lataaminen epäonnistui</span>;
   }
 
   return (

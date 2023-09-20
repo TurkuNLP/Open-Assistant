@@ -35,17 +35,17 @@ const Leaderboard = () => {
       <AdminArea>
         <Box display="flex" flexDirection="column">
           <Heading fontSize="2xl" fontWeight="bold" pb="4">
-            Trollboard
+            Trollilauta
           </Heading>
           <Card>
             <CardBody>
               <RadioGroup defaultValue="1" onChange={setEnabled.toggle}>
                 <Stack direction="row" spacing={5}>
                   <Radio value="1" colorScheme="green">
-                    Show active users
+                    Näytä aktiiviset käyttäjät
                   </Radio>
                   <Radio value="2" colorScheme="red">
-                    Show banned users
+                    Näytä bannatut käyttäjät
                   </Radio>
                 </Stack>
               </RadioGroup>

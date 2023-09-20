@@ -9,7 +9,7 @@ const MessageList = () => {
   return (
     <>
       <Head>
-        <title>Open Assistant</title>
+        <title>Avoin Assistentti</title>
       </Head>
       <AdminArea>
         <Card>
