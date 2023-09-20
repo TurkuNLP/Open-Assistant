@@ -43,7 +43,7 @@ export function MessageHistoryTable({ message, revisions }: MessageHistoryTableP
           content={text}
           avatarProps={{
             name: `${boolean(message.is_assistant) ? "Assistant" : "User"}`,
-            src: `${boolean(message.is_assistant) ? "/images/logos/logo.png" : "/images/temp-avatars/av1.jpg"}`,
+            src: `${boolean(message.is_assistant) ? "/images/logos/logo.webp" : "/images/temp-avatars/av1.jpg"}`,
           }}
           highlight={index === array.length - 1}
         >

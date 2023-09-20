@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
+import { colors } from "src/styles/Theme/colors";
 
 export function SlimFooter() {
   const { t } = useTranslation();
@@ -16,11 +17,20 @@ export function SlimFooter() {
           alignItems="center"
           h="20"
           minWidth="70"
-          bg="gray.200"
+          bg="gray.100"
           borderRadius="20%"
+          _dark={{
+            bg: colors.dark.bg,
+          }}
         >
           <Link href="/" aria-label="Home" className="flex items-center gap-1">
-            <Image src="/images/logos/logo.png" className="mx-auto object-fill" width="48" height="48" alt="logo" />
+            <Image
+              src="/images/logos/logo_mono.webp"
+              className="mx-auto object-fill"
+              width="48"
+              height="48"
+              alt="logo"
+            />
           </Link>
         </Box>
         <nav>

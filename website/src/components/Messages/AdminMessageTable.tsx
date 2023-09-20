@@ -137,7 +137,7 @@ export const AdminMessageTable = ({ userId, includeUser }: { userId?: string; in
               <Avatar
                 size="xs"
                 mr="2"
-                src={`${row.original.is_assistant ? "/images/logos/logo.png" : "/images/temp-avatars/av1.jpg"}`}
+                src={`${row.original.is_assistant ? "/images/logos/logo.webp" : "/images/temp-avatars/av1.jpg"}`}
               ></Avatar>
               {renderText}
               {!row.original.parent_id && (

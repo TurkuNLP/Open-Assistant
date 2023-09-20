@@ -8,7 +8,7 @@ import { TermsOfService } from "src/components/ToS";
 import { post } from "src/lib/api";
 
 const navigateAway = () => {
-  location.href = "https://laion.ai/";
+  location.href = "https://turkunlp.org/";
 };
 
 const acceptToS = async () => {

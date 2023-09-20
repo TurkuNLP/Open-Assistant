@@ -241,7 +241,7 @@ export const PendingMessageEntry = forwardRef<HTMLDivElement, PendingMessageEntr
   const image = session?.user?.image;
 
   const avatarProps = useMemo(
-    () => ({ src: isAssistant ? `/images/logos/logo.png` : image ?? "/images/temp-avatars/av1.jpg" }),
+    () => ({ src: isAssistant ? `/images/logos/logo.webp` : image ?? "/images/temp-avatars/av1.jpg" }),
     [isAssistant, image]
   );
 

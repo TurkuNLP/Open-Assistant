@@ -1,4 +1,4 @@
-import { Box, Button, Text, useColorMode, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Button, Text, useBreakpointValue, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
@@ -67,7 +67,7 @@ export function Hero() {
             <AnimatedCircles />
             <Box className="-mx-4 h-[448px] px-9 [mask-image:linear-gradient(to_bottom,white_60%,transparent)] sm:mx-0 lg:absolute lg:-inset-x-10 lg:-top-10 lg:-bottom-20 lg:h-auto lg:px-0 lg:pt-10 xl:-bottom-32">
               <Image
-                src="/images/logos/logo.png"
+                src="/images/logos/logo.webp"
                 className="mx-auto mr-6 object-fill"
                 width="450"
                 height="450"

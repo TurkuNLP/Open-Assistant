@@ -2,7 +2,7 @@ import { Stack } from "@chakra-ui/react";
 import { PolicyChapterCard } from "src/components/PolicyCards/PolicyChapterCard";
 import { PolicySectionCard } from "src/components/PolicyCards/PolicySectionCard";
 
-// WEB-ADMIN! Lisää privacy policy url kohtaan 5.1
+// TODO: WEB-ADMIN! Lisää privacy policy url kohtaan 5.1
 
 const TermsData = [
   {

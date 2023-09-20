@@ -8,7 +8,7 @@ const BrbPage = () => {
       <Container className="">
         <div className="grid gap-16 items-center py-20 md:py-40 lg:grid-cols-2">
           <div className="m-auto order-2 lg:order-1">
-            <Image src="/images/logos/logo.png" width={450} height={450} alt="temp-image" />
+            <Image src="/images/logos/logo.webp" width={450} height={450} alt="temp-image" />
           </div>
           <div className="space-y-8 order-1 lg:order-2">
             <div>

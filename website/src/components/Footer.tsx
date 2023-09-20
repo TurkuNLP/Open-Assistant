@@ -29,7 +29,7 @@ export function Footer() {
           <Flex alignItems="center">
             <Box pr="2">
               <Link href="/" aria-label="Home">
-                <Image src="/images/logos/logo.png" width="52" height="52" alt="logo" />
+                <Image src="/images/logos/logo_mono.webp" width="52" height="52" alt="logo" />
               </Link>
             </Box>
 
