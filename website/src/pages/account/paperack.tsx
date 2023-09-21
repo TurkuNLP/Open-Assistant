@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Input, InputGroup, useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import Head from "next/head";
 import React, { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
@@ -56,31 +56,7 @@ export default function PaperAck() {
       <main className="oa-basic-theme h-3/4 z-0 flex flex-col items-center justify-center">
         <div className="max-w-3xl">
           <div className="m-4">
-            <p className="mb-8">
-              If you want to be considered for acknowledgements in the paper for your contributions, tick the box below
-              AND enter your (real) name.
-            </p>
-            <form onSubmit={updatePaperAck}>
-              <InputGroup className="flex flex-col gap-6">
-                <FormControl className="flex flex-row gap-2">
-                  <input
-                    id="paperackYes"
-                    type="checkbox"
-                    name="paperackYes"
-                    {...register("paperackYes")}
-                    className="mb-2"
-                  />
-                  <FormLabel htmlFor="paperackYes">I want to be mentioned in the acknowledgements</FormLabel>
-                </FormControl>
-                <FormControl isInvalid={errors.paperackName ? true : false}>
-                  <FormLabel>Write the name by which you want to be mentioned in the acknowledgements</FormLabel>
-                  <Input placeholder="Name" type="text" {...register("paperackName")}></Input>
-                </FormControl>
-                <Button isDisabled={paperackYes && !paperackName} type="submit">
-                  Submit
-                </Button>
-              </InputGroup>
-            </form>
+            <p className="m-auto">This functionality has been disabled on this platform.</p>
           </div>
         </div>
       </main>

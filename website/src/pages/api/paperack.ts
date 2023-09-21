@@ -1,9 +1,12 @@
-import { withoutRole } from "src/lib/auth";
-import prisma from "src/lib/prismadb";
-
 /**
  * Updates the user's paper ack info
  */
+
+const handler = (req, res, token) => {
+  return res.status(403).json({ message: "This functionality has been disabled." });
+};
+
+/**
 const handler = withoutRole("banned", async (req, res, token) => {
   // handle GET
   if (req.method === "GET") {
@@ -36,5 +39,6 @@ const handler = withoutRole("banned", async (req, res, token) => {
   });
   return res.status(200).json(user);
 });
+*/
 
 export default handler;
