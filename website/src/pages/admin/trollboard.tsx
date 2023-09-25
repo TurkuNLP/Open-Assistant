@@ -29,7 +29,7 @@ const Leaderboard = () => {
   return (
     <>
       <Head>
-        <title>{`Trollboard - ${t("common:title")}`}</title>
+        <title>{`${t("common:trollboard")} - ${t("common:title")}`}</title>
         <meta name="description" content="Admin Trollboard" charSet="UTF-8" />
       </Head>
       <AdminArea>

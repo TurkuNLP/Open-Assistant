@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { useTranslation } from "next-i18next";
+import React from "react";
 import { AdminArea } from "src/components/AdminArea";
 import { AdminLayout } from "src/components/Layout";
 import { UserTable } from "src/components/UserTable";
@@ -9,10 +11,11 @@ export { getStaticProps } from "src/lib/defaultServerSideProps";
  * admins the ability to manage their access rights.
  */
 const AdminIndex = () => {
+  const { t } = useTranslation(["common"]);
   return (
     <>
       <Head>
-        <title>Open Assistant</title>
+        <title>{`${t("common:users")} - ${t("common:title")}`}</title>
       </Head>
       <AdminArea>
         <UserTable />

@@ -1,5 +1,6 @@
 import { Card, CardBody, CircularProgress } from "@chakra-ui/react";
 import Head from "next/head";
+import { useTranslation } from "next-i18next";
 import { AdminArea } from "src/components/AdminArea";
 import { AdminLayout } from "src/components/Layout";
 import { get } from "src/lib/api";
@@ -8,11 +9,14 @@ export { getStaticProps } from "src/lib/defaultServerSideProps";
 
 export default function Parameters() {
   const { data, isLoading, error } = useSWRImmutable("/api/admin/parameters", get);
+  const { t } = useTranslation(["common"]);
 
   return (
     <>
       <Head>
-        <title>Parameters - Open Assistant</title>
+        <title>
+          {t("common:parameters")} - {t("common:title")}
+        </title>
       </Head>
       <AdminArea>
         <Card>

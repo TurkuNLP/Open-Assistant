@@ -51,12 +51,12 @@ export default function PaperAck() {
   return (
     <>
       <Head>
-        <title>Open Assistant</title>
+        <title>Avoin Avustaja</title>
       </Head>
       <main className="oa-basic-theme h-3/4 z-0 flex flex-col items-center justify-center">
         <div className="max-w-3xl">
           <div className="m-4">
-            <p className="m-auto">This functionality has been disabled on this platform.</p>
+            <p className="m-auto">Tämä toiminnallisuus on poistettu käytöstä Avoimessa Avustajassa.</p>
           </div>
         </div>
       </main>
