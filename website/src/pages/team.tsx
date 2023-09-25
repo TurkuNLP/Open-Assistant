@@ -10,11 +10,11 @@ import data from "../data/team.json";
 const Team = () => {
   const cardBackgroundColor = useColorModeValue("gray.100", "gray.800");
   const { groups, people } = data;
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   return (
     <>
       <Head>
-        <title>{`${t("who_are_we")} - Open Assistant`}</title>
+        <title>{`${t("who_are_we")} - ${t("title")}`}</title>
         <meta name="description" content="The team behind Open Assistant" />
       </Head>
       <Box p="6" className="oa-basic-theme">

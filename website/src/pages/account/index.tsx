@@ -36,7 +36,9 @@ export default function Account() {
   return (
     <>
       <Head>
-        <title>{t("common:title")}</title>
+        <title>
+          {t("common:account_settings")} - {t("common:title")}
+        </title>
         <meta
           name="description"
           content="Conversational AI for everyone. An open source project to create a chat enabled GPT LLM run by LAION and contributors around the world."

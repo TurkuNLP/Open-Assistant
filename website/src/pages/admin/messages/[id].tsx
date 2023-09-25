@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 export { getServerSideProps } from "src/lib/defaultServerSideProps";
 import { AdminArea } from "src/components/AdminArea";
 import { JsonCard } from "src/components/JsonCard";
@@ -49,10 +50,12 @@ const MessageDetail = () => {
     error: revisionError,
   } = useSWRImmutable<MessageRevision[]>(`/api/admin/messages/${messageId}/history`, get, { keepPreviousData: true });
 
+  const { t } = useTranslation(["common"]);
+
   return (
     <>
       <Head>
-        <title>Avoin Assistentti</title>
+        <title>{t("common:title")}</title>
       </Head>
       <AdminArea>
         {(isLoading && !data) ||
@@ -67,7 +70,7 @@ const MessageDetail = () => {
             <Grid gap="6">
               <Card>
                 <CardHeader fontWeight="bold" fontSize="xl" pb="0">
-                  Message Detail
+                  Viestin tiedot
                 </CardHeader>
                 <CardBody>
                   <JsonCard>{data.message}</JsonCard>
@@ -75,7 +78,7 @@ const MessageDetail = () => {
               </Card>
               <Card>
                 <CardHeader fontWeight="bold" fontSize="xl" pb="0">
-                  Message History
+                  Viestihistoria
                 </CardHeader>
                 <CardBody>
                   <MessageHistoryTable message={data?.message} revisions={revisions} />
@@ -83,41 +86,41 @@ const MessageDetail = () => {
               </Card>
               <Card>
                 <CardHeader fontWeight="bold" fontSize="xl" pb="0">
-                  Tree {data.tree.id}
+                  Viestipuu {data.tree.id}
                 </CardHeader>
                 <CardBody>
                   <TableContainer>
                     <Table variant="simple">
-                      <TableCaption>Message tree state</TableCaption>
+                      <TableCaption>Viestipuun tila</TableCaption>
                       <Thead>
                         <Tr>
-                          <Th>Property</Th>
-                          <Th>Value</Th>
+                          <Th>Ominaisuus</Th>
+                          <Th>Arvo</Th>
                         </Tr>
                       </Thead>
                       <Tbody>
                         <Tr>
-                          <Td>State</Td>
+                          <Td>Tila</Td>
                           <Td>{data.tree_state.state}</Td>
                         </Tr>
                         <Tr>
-                          <Td>Goal Tree Size</Td>
+                          <Td>Maalisyvyys</Td>
                           <Td>{data.tree_state.goal_tree_size}</Td>
                         </Tr>
                         <Tr>
-                          <Td>Max depth</Td>
+                          <Td>Tämänhetkinen maksimisyvyys</Td>
                           <Td>{data.tree_state.max_depth}</Td>
                         </Tr>
                         <Tr>
-                          <Td>Max children count</Td>
+                          <Td>Tämänhetkinen vastausten maksimimäärä</Td>
                           <Td>{data.tree_state.max_children_count}</Td>
                         </Tr>
                         <Tr>
-                          <Td>Active</Td>
+                          <Td>Aktiivinen</Td>
                           <Td>{data.tree_state.active ? "Active" : "Not active"}</Td>
                         </Tr>
                         <Tr>
-                          <Td>Origin</Td>
+                          <Td>Alkuperä</Td>
                           <Td>{data.tree_state.origin || "null"}</Td>
                         </Tr>
                       </Tbody>

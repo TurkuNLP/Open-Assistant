@@ -2,8 +2,6 @@ import { Stack } from "@chakra-ui/react";
 import { PolicyChapterCard } from "src/components/PolicyCards/PolicyChapterCard";
 import { PolicySectionCard } from "src/components/PolicyCards/PolicySectionCard";
 
-// TODO: WEB-ADMIN! Lisää privacy policy url kohtaan 5.1
-
 const TermsData = [
   {
     number: "1",
@@ -126,7 +124,7 @@ const TermsData = [
       {
         number: "5.1",
         title: "",
-        desc: "TurkuNLP käsittelee käyttäjien henkilötietoja tietosuojalainsäädännön säännösten mukaisesti. Yksityiskohtaiset tiedot löytyvät tietosuojaselosteesta, joka on saatavilla osoitteessa: /privacy-policy.",
+        desc: "TurkuNLP käsittelee käyttäjien henkilötietoja tietosuojalainsäädännön säännösten mukaisesti. Yksityiskohtaiset tiedot löytyvät tietosuojaselosteesta, joka on saatavilla osoitteessa https://avoin-avustaja.fi/privacy-policy .",
       },
       {
         number: "5.2",
