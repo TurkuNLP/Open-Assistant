@@ -12,7 +12,7 @@ const BrbPage = () => {
           </div>
           <div className="space-y-8 order-1 lg:order-2">
             <div>
-              <h1 className="text-4xl mb-6">Down for maintenance</h1>
+              <h1 className="text-4xl mb-6">Huoltotöiden alla</h1>
             </div>
             <p className="text-2xl">{"We are improving the service, we'll be back in very few minutes."}</p>
           </div>

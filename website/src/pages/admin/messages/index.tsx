@@ -11,9 +11,7 @@ const MessageList = () => {
   return (
     <>
       <Head>
-        <title>
-          {t("common:messages")} - {t("common:title")}
-        </title>
+        <title>{t("common:messages") + " - " + t("common:title")}</title>
       </Head>
       <AdminArea>
         <Card>

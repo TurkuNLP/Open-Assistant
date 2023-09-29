@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useForm } from "react-hook-form";
 import { UserStats } from "src/components/Account/UserStats";
@@ -49,6 +50,7 @@ interface UserForm {
 }
 
 const ManageUser = ({ user }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { t } = useTranslation(["common"]);
   const toast = useToast();
 
   const { data: stats } = uswSWRImmutable<Partial<{ [time in LeaderboardTimeFrame]: LeaderboardEntity }>>(
@@ -64,7 +66,7 @@ const ManageUser = ({ user }: InferGetServerSidePropsType<typeof getServerSidePr
   const { trigger } = useSWRMutation("/api/admin/update_user", post, {
     onSuccess: () => {
       toast({
-        title: "Updated user",
+        title: "Käyttäjän tiedot päivitettiin",
         status: "success",
         duration: 1000,
         isClosable: true,
@@ -72,7 +74,7 @@ const ManageUser = ({ user }: InferGetServerSidePropsType<typeof getServerSidePr
     },
     onError: () => {
       toast({
-        title: "User Role update failed",
+        title: "Käyttäjän roolin muokkaus epäonnistui",
         status: "error",
         duration: 1000,
         isClosable: true,
@@ -87,7 +89,7 @@ const ManageUser = ({ user }: InferGetServerSidePropsType<typeof getServerSidePr
   return (
     <>
       <Head>
-        <title>Manage Users - Open Assistant</title>
+        <title>{`Hallinnoi käyttäjiä - ${t("common:title")}`}</title>
         <meta
           name="description"
           content="Conversational AI for everyone. An open source project to create a chat enabled GPT LLM run by LAION and contributors around the world."
@@ -102,30 +104,30 @@ const ManageUser = ({ user }: InferGetServerSidePropsType<typeof getServerSidePr
                 <input type="hidden" {...register("id")}></input>
                 <input type="hidden" {...register("auth_method")}></input>
                 <FormControl>
-                  <FormLabel>Display Name</FormLabel>
+                  <FormLabel>Käyttäjänimi</FormLabel>
                   <Input {...register("display_name")} />
                 </FormControl>
                 <FormControl mt="2">
-                  <FormLabel>Role</FormLabel>
+                  <FormLabel>Rooli</FormLabel>
                   <RoleSelect {...register("role")}></RoleSelect>
                 </FormControl>
                 <FormControl mt="2">
-                  <FormLabel>Notes</FormLabel>
+                  <FormLabel>Huomiot</FormLabel>
                   <Input {...register("notes")} />
                 </FormControl>
                 <FormControl mt="2">
-                  <FormLabel>Show on leaderboard</FormLabel>
+                  <FormLabel>Näytä tulostaulukossa</FormLabel>
                   <Checkbox {...register("show_on_leaderboard")}></Checkbox>
                 </FormControl>
                 <Button mt={4} type="submit">
-                  Update
+                  Päivitä
                 </Button>
               </form>
               <Accordion allowToggle mt="4">
                 <AccordionItem>
                   <AccordionButton>
                     <Box as="span" flex="1" textAlign="left">
-                      Raw JSON
+                      Raaka JSON-data
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
@@ -138,7 +140,7 @@ const ManageUser = ({ user }: InferGetServerSidePropsType<typeof getServerSidePr
           </Card>
           <Card>
             <CardHeader pb="0" fontWeight="medium" fontSize="xl">
-              {`User's messages`}
+              {`Käyttäjän viestit`}
             </CardHeader>
             <CardBody>
               <AdminMessageTable userId={user.user_id}></AdminMessageTable>
@@ -157,7 +159,7 @@ const ManageUser = ({ user }: InferGetServerSidePropsType<typeof getServerSidePr
  */
 export const getServerSideProps: GetServerSideProps<{ user: User<Role> }, { id: string }> = async ({
   params,
-  locale = "en",
+  locale = "fi",
 }) => {
   const backend_user = await userlessApiClient.fetch_user(params!.id as string);
   if (!backend_user) {

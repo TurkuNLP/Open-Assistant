@@ -1,7 +1,7 @@
 {
-  "name": "website",
-  "homepage": "http://projects.laion.ai.github.io/Open-Assistant",
-  "version": "0.1.0",
+  "name": "aa_frontend",
+  "homepage": "https://github.com/TurkuNLP/Open-Assistant",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -14,9 +14,7 @@ export default function Parameters() {
   return (
     <>
       <Head>
-        <title>
-          {t("common:parameters")} - {t("common:title")}
-        </title>
+        <title>{`${t("common:parameters")} - ${t("common:title")}`}</title>
       </Head>
       <AdminArea>
         <Card>

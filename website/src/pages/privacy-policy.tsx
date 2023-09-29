@@ -1,11 +1,13 @@
 import { Box, Heading, Link, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import Head from "next/head";
+import { useTranslation } from "next-i18next";
 import { PolicyChapterCard } from "src/components/PolicyCards/PolicyChapterCard";
 import { PolicySectionCard } from "src/components/PolicyCards/PolicySectionCard";
 export { getStaticProps } from "src/lib/defaultServerSideProps";
 
 const PrivacyPolicy = () => {
   const backgroundColor = useColorModeValue("gray.100", "gray.800");
+  const { t } = useTranslation(["common"]);
 
   const PrivacyPolicyData = [
     {
@@ -158,14 +160,14 @@ const PrivacyPolicy = () => {
   return (
     <>
       <Head>
-        <title>Tietosuojaseloste - Avoin Avustaja</title>
+        <title>{`${t("common:privacy_policy")} - ${t("common:title")}`}</title>
         <meta name="description" content="Avoimen Avustajan tietosuojaseloste" />
       </Head>
       <Box p="6" className="oa-basic-theme">
         <Box className="max-w-4xl mx-auto">
           <Stack spacing="6" mb="6">
             <Heading as="h1" size="xl" color="blue.500">
-              Tietosuojakäytänteet
+              {`${t("common:title")} - ${t("common:privacy_policy")}`}
             </Heading>
 
             <Box bg={backgroundColor} p="6" pt="4" borderRadius="xl" shadow="base">

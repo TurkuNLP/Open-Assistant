@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { createColumnHelper } from "@tanstack/table-core";
 import { formatDistanceToNow, formatISO9075 } from "date-fns";
+import { fi } from "date-fns/locale";
 import { Edit, Eye, RotateCw, Trash } from "lucide-react";
 import NextLink from "next/link";
 import { useTranslation } from "next-i18next";
@@ -43,7 +44,7 @@ const columnHelper = createColumnHelper<
 // TODO move this to somewhere
 const DateDiff = ({ children }: { children: string | Date | number }) => {
   const date = new Date(children);
-  const diff = formatDistanceToNow(date, { addSuffix: true });
+  const diff = formatDistanceToNow(date, { addSuffix: true, locale: fi });
   return (
     <Tooltip label={formatISO9075(date)} placement="top">
       {diff}

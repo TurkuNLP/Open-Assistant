@@ -9,9 +9,7 @@ const TermsOfServicePage = () => {
   return (
     <>
       <Head>
-        <title>
-          {t("common:terms_of_service")} - {t("common:title")}
-        </title>
+        <title>{`${t("common:terms_of_service")} - ${t("common:title")}`}</title>
         <meta name="description" content="Avoimen Avustajan palveluehdot" />
       </Head>
       <Box p="6" className="oa-basic-theme">

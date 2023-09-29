@@ -16,7 +16,7 @@
   "reactions": "Reaktiot",
   "recent_messages": "Uusimmat viestit kielellä {{language}}",
   "report_action": "Raportoi",
-  "report_placeholder": "Miksi tämä viesti tulisi arvioida?",
+  "report_placeholder": "Miksi tämä viesti tulisi tarkastaa?",
   "report_title": "Raportoi",
   "restart_tree": "Aloita viestiketju uudestaan",
   "send_report": "Lähetä",
