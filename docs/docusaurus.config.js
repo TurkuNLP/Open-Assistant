@@ -13,12 +13,12 @@ const config = {
   baseUrl: "/avoin-avustaja/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/logo.svg",
+  favicon: "img/favicon.png",
   staticDirectories: ["public", "static", "docs/data/img"],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "LAION-AI", // Usually your GitHub org/user name.
+  organizationName: "TurkuNLP", // Usually your GitHub org/username.
   projectName: "Open-Assistant", // Usually your repo name.
   deploymentBranch: "main",
 
@@ -48,17 +48,17 @@ const config = {
         blog: {
           routeBasePath: "/blog",
           showReadingTime: true,
-          blogTitle: "OpenAssistant Blog",
-          blogDescription: "Home of the OpenAssistant blog.",
-          blogSidebarTitle: "Blog Posts",
+          blogTitle: "Julkaisut",
+          blogDescription: "Täältä löydät Avoimeen Avustajaan liittyviä kirjoituksia.",
+          blogSidebarTitle: "Julkaisut",
           blogSidebarCount: "ALL",
           postsPerPage: "ALL",
           feedOptions: {
             type: "all",
-            title: "OpenAssistant Blog",
-            description: "Home of the OpenAssistant blog.",
-            language: "en",
-            copyright: `Copyright © ${new Date().getFullYear()} OpenAssistant.`,
+            title: "Avoimen Avustajan julkaisut",
+            description: "Täältä löydät Avoimeen Avustajaan liittyviä kirjoituksia.",
+            language: "fi",
+            copyright: `Tekijänoikeus © ${new Date().getFullYear()} Avoin Avustaja & OpenAssistant.`,
           },
         },
         theme: {
@@ -75,7 +75,7 @@ const config = {
         title: "Avoin Avustaja",
         logo: {
           alt: "Avoimen Avustajan logo",
-          src: "img/logo.svg",
+          src: "img/logo_192x192.webp",
         },
         items: [
           {
@@ -92,9 +92,9 @@ const config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "Docs",
+            label: "Dokumentaatio",
           },
-          { to: "/blog", label: "Blog", position: "left" },
+          { to: "/blog", label: "Julkaisut", position: "left" },
           { to: "/api", label: "API", position: "left" },
           {
             href: "https://github.com/TurkuNLP/Open-Assistant",
@@ -107,7 +107,7 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Community",
+            title: "Yhteisöt",
             items: [
               {
                 label: "OpenAssistant Contributors Discord",
@@ -124,20 +124,20 @@ const config = {
             ],
           },
           {
-            title: "Resources",
+            title: "Lisätietoja",
             items: [
               {
                 label: "GitHub",
-                href: "https://github.com/LAION-AI/Open-Assistant",
+                href: "https://github.com/TurkuNLP/Open-Assistant",
               },
               {
                 label: "FAQ",
-                href: "https://projects.laion.ai/Open-Assistant/docs/faq",
+                href: "https://docs.avoin-avustaja.fi/avoin-avustaja/docs/faq",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} TurkuNLP & laion.ai. Tehty käyttäen Docusaurusta.`,
+        copyright: `Tekijänoikeus © ${new Date().getFullYear()} TurkuNLP & laion.ai. Tehty käyttäen Docusaurusta.`,
       },
       prism: {
         theme: lightCodeTheme,

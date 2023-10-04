@@ -1,7 +1,7 @@
-# Introduction
+# Esittely
 
-> The FAQ page is available at
-> [here](https://projects.laion.ai/Open-Assistant/docs/faq).
+> Usein kysytyt kysymykset löytyvät
+> [täältä](https://docs.avoin-avustaja.fi/docs/faq).
 
 Open Assistant (abbreviated as OA) is a chat-based and open-source assistant.
 The vision of the project is to make a large language model that can run on a

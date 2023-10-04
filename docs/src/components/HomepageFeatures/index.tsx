@@ -10,7 +10,7 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Your conversational assistant",
+    title: "Henkilökohtainen tekoälyavustajasi",
     Svg: require("@site/static/img/logo.svg").default,
     description: (
       <>
@@ -19,7 +19,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: "Retrieval via Search Engines",
+    title: "Etsii tietoa hakukoneista",
     Svg: require("@site/static/img/logo.svg").default,
     description: (
       <>External, upgradeable knowledge: No need for billions of parameters.</>

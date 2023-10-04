@@ -1,6 +1,7 @@
-FROM node:18
+FROM node:16
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install
+RUN yarn
 COPY . .
+EXPOSE 3000
 CMD ["yarn", "serve"]
