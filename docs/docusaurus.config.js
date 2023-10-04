@@ -6,11 +6,11 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Open Assistant",
-  tagline: "Build the assistant of the future!",
-  url: "https://LAION-AI.github.io",
+  title: "Avoin Avustaja",
+  tagline: "Auta meitä luomaan tulevaisuuden tekoälyavustaja!",
+  url: "https://turkunlp.org/",
   trailingSlash: false,
-  baseUrl: "/Open-Assistant/",
+  baseUrl: "/avoin-avustaja/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/logo.svg",
@@ -26,8 +26,8 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
+    defaultLocale: "fi",
+    locales: ["fi"],
   },
   markdown: {
     mermaid: true,
@@ -72,22 +72,22 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "Open Assistant",
+        title: "Avoin Avustaja",
         logo: {
-          alt: "Open Assistant Logo",
+          alt: "Avoimen Avustajan logo",
           src: "img/logo.svg",
         },
         items: [
           {
-            href: "https://open-assistant.io/",
-            label: "App",
+            href: "https://avoin-avustaja.fi/",
+            label: "Sovellus",
             position: "left",
           },
-          {
-            href: "https://open-assistant.io/chat",
+          /*{
+            href: "https://avoin-avustaja.fi/chat",
             label: "Chat",
             position: "left",
-          },
+          },*/
           {
             type: "doc",
             docId: "intro",
@@ -97,7 +97,7 @@ const config = {
           { to: "/blog", label: "Blog", position: "left" },
           { to: "/api", label: "API", position: "left" },
           {
-            href: "https://github.com/LAION-AI/Open-Assistant",
+            href: "https://github.com/TurkuNLP/Open-Assistant",
             label: "GitHub",
             position: "right",
           },
@@ -137,7 +137,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} laion.ai. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} TurkuNLP & laion.ai. Tehty käyttäen Docusaurusta.`,
       },
       prism: {
         theme: lightCodeTheme,
