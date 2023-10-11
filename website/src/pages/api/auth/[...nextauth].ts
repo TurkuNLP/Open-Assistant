@@ -26,6 +26,11 @@ providers.push(
         user: process.env.EMAIL_SERVER_USER,
         pass: process.env.EMAIL_SERVER_PASSWORD,
       },
+      tls: {
+        /* circumvents SSL errors between this client and postfix on host, SSL
+        is not a requirement since the emails are only transferred internally */
+        rejectUnauthorized: false,
+      },
     },
     from: process.env.EMAIL_FROM,
   })
@@ -63,8 +68,8 @@ if (boolean(process.env.DEBUG_LOGIN) || process.env.NODE_ENV === "development") 
     CredentialsProvider({
       name: "Debug Credentials",
       credentials: {
-        username: { label: "Username", type: "text" },
-        role: { label: "Role", type: "text" },
+        username: { label: "Käyttäjä", type: "text" },
+        role: { label: "Rooli", type: "text" },
       },
       async authorize(credentials) {
         const user = {
