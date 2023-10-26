@@ -49,7 +49,7 @@ export const TaskOption = ({ content }: TasksOptionProps) => {
               {t(TaskCategoryLabels[category])}
             </Heading>
             <Spacer />
-            <ExternalLink href="https://projects.laion.ai/Open-Assistant/docs/guides/guidelines" isExternal>
+            <ExternalLink href="https://github.com/TurkuNLP/Open-Assistant/wiki/Ohjeistus" isExternal>
               <IconButton variant="ghost" aria-label="More Information" icon={<HelpCircle size="2em" />} />
             </ExternalLink>
           </Flex>
