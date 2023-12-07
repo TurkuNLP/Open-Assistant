@@ -50,13 +50,18 @@ export function Hero() {
                   {t("index:help_us_improve")}
                 </Button>
               </Link>
+              <Link href="https://www.youtube.com/watch?v=FxngtUlL8RA" aria-label="Hugging face">
+                <Button variant="solid" colorScheme="blue" px={other_button_size} width="full" py={6}>
+                  {t("index:promo_video_button")}
+                </Button>
+              </Link>
               <Link href="https://turkunlp.org/" aria-label="Hugging face">
-                <Button variant="solid" colorScheme="blue" px={other_button_size} py={6}>
+                <Button variant="solid" colorScheme="blue" px={other_button_size} width="full" py={6}>
                   {t("index:hugging_face_link")}
                 </Button>
               </Link>
               <Link href="https://open-assistant.io/" aria-label="Open-Assistant">
-                <Button variant="solid" colorScheme="blue" px={other_button_size} py={6}>
+                <Button variant="solid" colorScheme="blue" px={other_button_size} width="full" py={6}>
                   {t("index:open_assistant_link")}
                   {/* {t("index:open_assistant_link")} */}
                 </Button>
