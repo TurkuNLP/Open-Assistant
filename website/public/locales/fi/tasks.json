@@ -1,0 +1,99 @@
+{
+  "any_feedback_on_this_task": "Haluatko antaa palautetta tästä tehtävästä?",
+  "available_task_count": "{{count}} tehtävää saatavilla",
+  "skip_confirmation": "Haluatko varmasti hypätä tämän tehtävän yli?",
+  "default": {
+    "unchanged_title": "Ei muutoksia",
+    "unchanged_message": "Haluatko varmasti jatkaa?",
+    "continue_anyway": "Jatka tästä huolimatta",
+    "markdownguide": "Styling with markdown supported"
+  },
+  "no_more_tasks": "Uusia tehtäviä ei löytynyt. Yritä myöhemmin uudelleen.",
+  "random": {
+    "label": "Kokeilen onneani",
+    "desc": "Auta meitä parantamaan Avointa Avustajaa suorittamalla satunnainen tehtävä."
+  },
+  "create_initial_prompt": {
+    "label": "Luo aloitusviestejä",
+    "desc": "Kirjoita aloitusviestejä auttaaksesi Avointa Avustajaa vastaamaan monimuotoisiin kysymyksiin. (jotka lisätään arvontaan)",
+    "overview": "Kirjoita aloitusviesti, joka annetaan Avoimelle Avustajalle",
+    "instruction": "Kirjoita aloitusviesti",
+    "response_placeholder": "Kirjoita kehotteesi tähän...",
+    "shotcut_tip": "Voit käyttää pikanäppäimiä Arvioidaksesi ja Lähettääksesi vastauksia:"
+  },
+  "reply_as_user": {
+    "label": "Vastaa käyttäjänä",
+    "desc": "Keskustele Avoimen Avustajan kanssa ja auta parantamaan sen vastauksia.",
+    "overview": "Vastaa annettuun keskusteluun sopivalla tavalla",
+    "instruction": "Kirjoita käyttäjän vastaus",
+    "response_placeholder": "Kirjoita vastauksesi tähän...",
+    "shotcut_tip": "Voit käyttää pikanäppäimiä Arvioidaksesi ja Lähettääksesi vastauksia:"
+  },
+  "reply_as_assistant": {
+    "label": "Vastaa avustajana",
+    "desc": "Auta Avointa Avustajaa parantamaan vastauksiaan sen keskustellessa käyttäjien kanssa.",
+    "overview": "Vastaa annettuun keskusteluun sopivalla tavalla",
+    "response_placeholder": "Kirjoita vastauksesi tähän...",
+    "shotcut_tip": "Voit käyttää pikanäppäimiä Arvioidaksesi ja Lähettääksesi vastauksia:"
+  },
+  "rank_user_replies": {
+    "label": "Järjestä käyttäjien vastaukset",
+    "desc": "Auta Avointa Avustajaa parantamaan vastauksiaan sen keskustellessa käyttäjien kanssa.",
+    "overview": "Järjestä annetut käyttäjien vastaukset siten, että paras on ensimmäisenä ja huonoin viimeisenä.",
+    "unchanged_title": "Järjestys ei muuttunut",
+    "unchanged_message": "Et muuttanut kehotteiden järjestystä. Haluatko varmasti jatkaa?",
+    "continue_anyway": "Jatka tästä huolimatta"
+  },
+  "rank_assistant_replies": {
+    "label": "Järjestä avustajan vastaukset",
+    "desc": "Arvioi Avoimen Avustajan kirjoittamia viestejä niiden tarkkuuden ja luotettavuuden mukaan.",
+    "overview": "Järjestä annetut avustajan vastaukset siten, että paras on ensimmäisenä ja huonoin viimeisenä.",
+    "unchanged_title": "Järjestys ei muuttunut",
+    "unchanged_message": "Et muuttanut kehotteiden järjestystä. Haluatko varmasti jatkaa?",
+    "continue_anyway": "Jatka tästä huolimatta"
+  },
+  "rank_initial_prompts": {
+    "label": "Järjestä aloitusviestit",
+    "desc": "Arvioi aloitusviestejä niiden tarkkuuden ja luotettavuuden mukaan.",
+    "overview": "Järjestä annetut aloitusviestit siten, että paras on ensimmäisenä ja huonoin viimeisenä.",
+    "unchanged_title": "Järjestys ei muuttunut",
+    "unchanged_message": "Et muuttanut kehotteiden järjestystä. Haluatko varmasti jatkaa?",
+    "continue_anyway": "Jatka tästä huolimatta"
+  },
+  "label_initial_prompt": {
+    "label": "Arvioi aloitusviesti",
+    "desc": "Arvioi viestiketjun aloitusviesti.",
+    "overview": "Arvioi seuraava viesti"
+  },
+  "label_prompter_reply": {
+    "label": "Arvioi käyttäjän vastaus",
+    "desc": "Arvioi käyttäjän kirjoittama vastaus",
+    "overview": "Arvioi seuraavan keskustelun viimeinen viesti."
+  },
+  "label_assistant_reply": {
+    "label": "Arvioi avustajan vastaus",
+    "desc": "Arvioi avustajan vastausviesti.",
+    "overview": "Arvioi seuraavan keskustelun viimeinen viesti."
+  },
+  "classify_initial_prompt": {
+    "label": "Arvioi aloitusviesti",
+    "desc": "Arvioi viesti.",
+    "overview": "Lue seuraava viesti ja vastaa siihen liittyviin kysymyksiin."
+  },
+  "classify_prompter_reply": {
+    "label": "Arvioi käyttäjän vastaus",
+    "desc": "Arvioi viesti.",
+    "overview": "Lue seuraava viestiketju ja vastaa sen viimeiseen viestiin liittyviin kysymyksiin."
+  },
+  "classify_assistant_reply": {
+    "label": "Arvioi avustajan vastaus",
+    "desc": "Arvioi viesti.",
+    "overview": "Lue seuraava viestiketju ja vastaa sen viimeiseen viestiin liittyviin kysymyksiin."
+  },
+  "submitted_as": "Tämän kieleksi merkitään {{submit_lang}}",
+  "tab_write": "Kirjoita",
+  "tab_preview": "Esikatsele",
+  "writing_wrong_langauge_a_b": "Kirjoitat ilmeisesti kielellä {{detected_lang}}, vaikka kieleksi on merkitty {{submit_lang}}.",
+  "not_rankable": "Kaikki vastaukset sisältävät väärää tietoa eikä niitä voida luokitella",
+  "moderator_edit_explain": "Muokkaa korostettua viestiä pitäen samalla muutokset minimaalisina. Tämä toiminto voi aiheuttaa sen, että keskustelussa ei ole mitään järkeä. Käytäthän varoen."
+}

@@ -1,0 +1,29 @@
+{
+  "blurb": "Auta meitä kehittämään täysin suomenkielinen keskusteleva tekoäly!",
+  "blurb1": "TurkuNLP on Turun yliopistossa toimiva työryhmä, joka tutkii ja kehittää avointa kieliteknologiaa. Nyt kehitämme täysin suomenkielistä keskustelevaa tekoälyä. Keksimällä arkisia kysymyksiä ja vastaamalla niihin tekoälyn tavoin, voit auttaa meitä keräämään opetusdataa tekoälyn koulutusta varten.",
+  "chat_with_our_assistant": "Keskustele Avustajamme kanssa",
+  "description": "Keskusteleva tekoäly kaikkien saataville. LAIONin ja osallistujien ympäri maailmaa projekti keskustelevan GPT-kielimallin luomiseksi.",
+  "faq_items": {
+    "q0": "Kuinka pitkällä projekti on?",
+    "a0": "Olemme vasta alustavassa kehitysvaiheessa. Työskentelemme soveltaaksemme RLHF-menetelmiä isoihin kielimalleihin.",
+    "q1": "Kuka on Avoimen Avustajan takana?",
+    "a1": "Avoimen Avustajan takana on TurkuNLP sekä yksityishenkilöitä ympäri maailmaa, jotka haluavat saada keskustelevat tekoälyt kaikkien saataville.",
+    "q2": "Miten Avoin Avustaja lisensoitu?",
+    "a2": "Koodi ja mallit lisensoidaan Apache 2.0 -lisenssillä.",
+    "q3": "Julkaistaanko koulutusdata?",
+    "a3": "Kyllä, CC BY 4.0 -lisenssillä.",
+    "q4": "Onko Avoin Avustaja ilmainen?",
+    "a4": "Kyllä, sekä Avoin Avustaja käyttäminen että muokkaaminen tulee olemaan ilmaista.",
+    "q5": "Kuinka tehokkaan laitteiston tarvitsee mallin käyttämiseen?",
+    "a5": "Julkaisemme myös sellaisia versioita, jotka toimivat kuluttajatietokoneilla."
+  },
+  "faq_title": "Usein kysytyt kysymykset",
+  "open_assistant_link": "Alkuperäinen Open-Assistant -projekti",
+  "promo_video_button": "Esittelyvideo (YouTube)",
+  "help_us_improve": "Auta meitä kehittymään",
+  "hugging_face_link": "HuggingFace-sivumme",
+  "join_us_description": "Kaikki avoimen lähdekoodin projektit alkavat sinunkaltaisistasi ihmisistä. Avoin lähdekoodi on uskomus siitä, että voimme jakaa yhteisen tietomme ja tekniikkamme maailmalle koko ihmiskunnan hyväksi. Haluatko osallistua? Yhteystietomme:",
+  "join_us_title": "Liity meihin",
+  "subtitle": "Keskusteleva tekoäly kaikille.",
+  "try_our_assistant": "Kokeile Avustajaamme"
+}
