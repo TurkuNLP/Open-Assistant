@@ -45,7 +45,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppPropsWith
         <meta property="og:title" content="Avoin Avustaja | Keskusteleva tekoäly" />
         <meta property="og:url" content="https://avoin-avustaja.fi/" />
         <meta property="og:description" content={t("index:description")} />
-        <meta property="og:image" content="https://avoin-avustaja.fi/_next/image?url=%2Fimages%2Flogos%2Ffavicon.png&w=256&q=75" />
+        <meta
+          property="og:image"
+          content="https://avoin-avustaja.fi/_next/image?url=%2Fimages%2Flogos%2Ffavicon.png&w=256&q=75"
+        />
         <meta property="og:image:type" content="image/png" />
         <meta name="description" key="description" content={t("index:description")} />
       </Head>

@@ -29,8 +29,8 @@ providers.push(
       tls: {
         /* circumvents SSL errors between this client and postfix on host, SSL
         is not a requirement since the emails are only transferred internally */
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     },
     from: process.env.EMAIL_FROM,
   })
