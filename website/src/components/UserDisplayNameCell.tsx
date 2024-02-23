@@ -20,11 +20,13 @@ export const UserDisplayNameCell = ({
   avatarUrl,
   userId,
   authMethod,
+  streak,
 }: {
   displayName: string;
   avatarUrl?: string;
   userId: string;
   authMethod: string;
+  streak: string;
 }) => {
   const isAdminOrMod = useHasAnyRole(["admin", "moderator"]);
 
@@ -39,9 +41,13 @@ export const UserDisplayNameCell = ({
           {AUTH_METHOD_TO_ICON[authMethod] && (
             <Tooltip label={`Signed in with ${authMethod}`}>{AUTH_METHOD_TO_ICON[authMethod]}</Tooltip>
           )}
+          <div style={{ overflow: "hidden", fontWeight: "bold" }}>{streak}</div>
         </>
       ) : (
-        <div style={{ overflow: "hidden" }}>{displayName}</div>
+        <>
+          <div style={{ overflow: "hidden" }}>{displayName}</div>
+          <div style={{ overflow: "hidden" }}>{streak}</div>
+        </>
       )}
     </Flex>
   );
