@@ -16,6 +16,9 @@ services:
     pull_policy: always
     restart: always
     profiles: ["frontend-dev", "backend-dev", "ci", "inference-dev"]
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.20
     ports:
       - 5432:5432
     env_file:
@@ -33,6 +36,9 @@ services:
     image: redis
     restart: always
     profiles: ["frontend-dev", "backend-dev", "ci"]
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.30
     ports:
       - 6379:6379
     healthcheck:
@@ -47,6 +53,8 @@ services:
   redis-insights:
     image: redislabs/redisinsight:latest
     profiles: ["backend-dev"]
+    networks:
+      - oasst-net
     ports:
       - 8001:8001
 
@@ -55,11 +63,14 @@ services:
     image: postgres
     restart: always
     profiles: ["frontend-dev", "ci", "inference-dev"]
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.24
     ports:
       - 5433:5432
     env_file:
       - .uauth-env
-    volumes: 
+    volumes:
       - postgres_users:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
@@ -72,6 +83,9 @@ services:
     image: adminer
     restart: always
     profiles: ["frontend-dev", "backend-dev"]
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.25
     ports:
       - 8089:8080
 
@@ -80,8 +94,11 @@ services:
   # opening the emails listed.
   maildev:
     image: maildev/maildev
-    restart: always
+    restart: unless-stopped
     profiles: ["frontend-dev", "ci"]
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.13
     environment:
       - MAILDEV_WEB_PORT=1080
       - MAILDEV_SMTP_PORT=1025
@@ -95,6 +112,7 @@ services:
       dockerfile: docker/Dockerfile.backend
       context: .
     image: oasst-backend
+    restart: always
     environment:
       - POSTGRES_HOST=db
       - REDIS_HOST=redis
@@ -111,6 +129,9 @@ services:
       db:
         condition: service_healthy
     profiles: ["frontend-dev", "ci", "inference-dev"]
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.21
     ports:
       - "8080:8080"
 
@@ -121,6 +142,7 @@ services:
       context: .
     command: celery -A oasst_backend.celery_worker worker -l info
     image: oasst-backend-worker
+    restart: always
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
@@ -129,6 +151,9 @@ services:
       - MAX_WORKERS=1
     env_file:
       - .pgdb-env
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.22
     depends_on:
       db:
         condition: service_healthy
@@ -143,6 +168,7 @@ services:
       context: .
     command: celery -A oasst_backend.celery_worker beat -l INFO
     image: oasst-backend-worker-beat
+    restart: always
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
@@ -151,6 +177,9 @@ services:
       - MAX_WORKERS=1
     env_file:
       - .pgdb-env
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.23
     depends_on:
       db:
         condition: service_healthy
@@ -164,22 +193,31 @@ services:
       dockerfile: docker/Dockerfile.website
       context: .
     image: oasst-web
+    restart: always
     env_file:
       .web-env
+    container_name: oasst-web-platform
+    hostname: avoin-avustaja.fi
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.10
+        aliases:
+          - avoin-avustaja.fi
     depends_on:
       webdb:
         condition: service_healthy
-    ports:
-      - "3000:3000"
     command: bash wait-for-postgres.sh node server.js
     profiles: ["ci"]
 
   # This DB is for Inference
   inference-db:
     image: postgres
-    restart: always
+    restart: unless-stopped
     ports:
       - 5434:5432
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.26
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -193,8 +231,11 @@ services:
 
   inference-redis:
     image: redis
-    restart: always
+    restart: unless-stopped
     profiles: ["inference"]
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.31
     ports:
       - 6389:6379
     healthcheck:
@@ -221,6 +262,9 @@ services:
       TRUSTED_CLIENT_KEYS: "6969"
       ALLOW_DEBUG_AUTH: "True"
       API_ROOT: "http://localhost:8000"
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.36
     volumes:
       - "./oasst-shared:/opt/inference/lib/oasst-shared"
       - "./inference/server:/opt/inference/server"
@@ -239,6 +283,10 @@ services:
       dockerfile: docker/inference/Dockerfile.worker-full
       context: .
     image: oasst-inference-worker:dev
+    restart: unless-stopped
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.35
     environment:
       API_KEY: "0000"
       MODEL_CONFIG_NAME: ${MODEL_CONFIG_NAME:-distilgpt2}
@@ -256,6 +304,10 @@ services:
       dockerfile: docker/inference/Dockerfile.safety
       context: .
     image: oasst-inference-safety:dev
+    restart: unless-stopped
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.34
     environment:
       PORT: 8002
     volumes:
@@ -270,6 +322,9 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
       - 9090:9090
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.33
     restart: unless-stopped
     volumes:
       - ${PWD}/docker/prometheus:/etc/prometheus
@@ -279,6 +334,9 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.37
     ports:
       - 2000:2000
     restart: unless-stopped
@@ -297,6 +355,9 @@ services:
     container_name: netdata
     pid: host
     hostname: oasst-netdata
+    networks:
+      oasst-net:
+        ipv4_address: 10.5.0.32
     ports:
       - 19999:19999
     restart: unless-stopped
@@ -324,6 +385,17 @@ services:
       - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN:-}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
     profiles: ["observability"]
+
+# we assign static ip's to every container because
+# of the way our web server's set up. -Joona
+networks:
+  oasst-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        -  subnet: 10.5.0.0/16
+           gateway: 10.5.0.1
 
 volumes:
   prom_data:

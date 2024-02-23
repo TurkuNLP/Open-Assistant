@@ -17,6 +17,7 @@ type WindowLeaderboardEntity = LeaderboardEntity & { isSpaceRow?: boolean };
 
 const columnHelper = createColumnHelper<WindowLeaderboardEntity>();
 const jsonExpandRowModel = createJsonExpandRowModel<WindowLeaderboardEntity>();
+const streakDayTreshold = 1;
 /**
  * Presents a grid of leaderboard entries with more detailed information.
  */
@@ -64,12 +65,14 @@ export const LeaderboardTable = ({
         header: t("user"),
         cell: ({ getValue, row }) => {
           const user = row.original;
+          const isOnStreak = user.streak_days >= streakDayTreshold; 
           return (
             <UserDisplayNameCell
-              authMethod={user.auth_method}
+              authMethod={""} // no one cares about the auth method
               displayName={getValue()}
               userId={user.user_id}
               avatarUrl={user.image}
+              streak={ isOnStreak ? ("🔥 " + String(user.streak_days + 1) ) : ( "" )}
             ></UserDisplayNameCell>
           );
         },

@@ -49,16 +49,14 @@ const config = {
           routeBasePath: "/blog",
           showReadingTime: true,
           blogTitle: "Julkaisut",
-          blogDescription:
-            "Täältä löydät Avoimeen Avustajaan liittyviä kirjoituksia.",
+          blogDescription: "Täältä löydät Avoimeen Avustajaan liittyviä kirjoituksia.",
           blogSidebarTitle: "Julkaisut",
           blogSidebarCount: "ALL",
           postsPerPage: "ALL",
           feedOptions: {
             type: "all",
             title: "Avoimen Avustajan julkaisut",
-            description:
-              "Täältä löydät Avoimeen Avustajaan liittyviä kirjoituksia.",
+            description: "Täältä löydät Avoimeen Avustajaan liittyviä kirjoituksia.",
             language: "fi",
             copyright: `Tekijänoikeus © ${new Date().getFullYear()} Avoin Avustaja & OpenAssistant.`,
           },
@@ -97,6 +95,7 @@ const config = {
             label: "Dokumentaatio",
           },
           { to: "/blog", label: "Julkaisut", position: "left" },
+          { to: "/api", label: "API", position: "left" },
           {
             href: "https://github.com/TurkuNLP/Open-Assistant",
             label: "GitHub",
