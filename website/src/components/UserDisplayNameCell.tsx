@@ -26,7 +26,7 @@ export const UserDisplayNameCell = ({
   avatarUrl?: string;
   userId: string;
   authMethod: string;
-  streak: string;
+  streak?: string;
 }) => {
   const isAdminOrMod = useHasAnyRole(["admin", "moderator"]);
 
