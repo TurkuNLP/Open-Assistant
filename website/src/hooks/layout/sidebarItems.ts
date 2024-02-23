@@ -38,7 +38,7 @@ export const useSidebarItems = () => {
       },
       {
         labelID: "guidelines",
-        pathname: "https://projects.laion.ai/Open-Assistant/docs/guides/guidelines",
+        pathname: "https://github.com/TurkuNLP/Open-Assistant/wiki",
         icon: ExternalLink,
         target: "_blank",
       },

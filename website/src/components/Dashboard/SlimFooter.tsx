@@ -41,8 +41,11 @@ export function SlimFooter() {
             <FooterLink href="https://github.com/TurkuNLP/Open-Assistant" label={t("github")} />
             <FooterLink href="https://huggingface.co/turkunlp" label={t("hugging_face")} />
             {/* <FooterLink href="https://ykilcher.com/open-assistant-discord" label={t("discord")} /> */}
-            <FooterLink href="https://projects.laion.ai/Open-Assistant/docs/intro" label={t("docs")} />
-            <FooterLink href="https://projects.laion.ai/Open-Assistant/docs/faq" label={t("faq")} />
+            <FooterLink href="https://github.com/TurkuNLP/Open-Assistant/wiki" label={t("docs")} />
+            <FooterLink
+              href="https://github.com/TurkuNLP/Open-Assistant/wiki/Usein-Kysytyt-Kysymykset"
+              label={t("faq")}
+            />
           </Box>
         </nav>
       </Box>

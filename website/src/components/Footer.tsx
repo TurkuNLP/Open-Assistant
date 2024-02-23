@@ -62,11 +62,11 @@ export function Footer() {
               </Flex>
               <Flex direction="column" alignItems={["center", "start"]}>
                 <Text fontWeight="bold" color={textColor}>
-                  {"Ohjeistus [englanniksi]"}
+                  {"Ohjeistus"}
                 </Text>
-                <FooterLink href="https://projects.laion.ai/Open-Assistant" label={"Dokumentaatio"} />
+                <FooterLink href="https://github.com/TurkuNLP/Open-Assistant/wiki" label={"Dokumentaatio"} />
                 <FooterLink
-                  href="https://projects.laion.ai/Open-Assistant/docs/faq"
+                  href="https://github.com/TurkuNLP/Open-Assistant/wiki/Usein-Kysytyt-Kysymykset"
                   label={"Usein kysytyt kysymykset"}
                 />
               </Flex>

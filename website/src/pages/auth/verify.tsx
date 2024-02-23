@@ -19,7 +19,7 @@ export default function Verify() {
       <div className={`flex h-full justify-center items-center ${bgColorClass}`}>
         <div className={bgColorClass}>
           <h1 className="text-lg">
-            Kirjautumislinkki on lähetetty sähköpostiisi (löytyy luultavasti roskapostikansiosta).
+            Kirjautumislinkki on lähetetty sähköpostiisi (tarkistathan roskapostikansiosi).
           </h1>
         </div>
       </div>
