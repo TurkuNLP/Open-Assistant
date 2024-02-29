@@ -17,7 +17,7 @@ type WindowLeaderboardEntity = LeaderboardEntity & { isSpaceRow?: boolean };
 
 const columnHelper = createColumnHelper<WindowLeaderboardEntity>();
 const jsonExpandRowModel = createJsonExpandRowModel<WindowLeaderboardEntity>();
-const streakDayTreshold = 1;
+const streakDayTreshold = 2;
 /**
  * Presents a grid of leaderboard entries with more detailed information.
  */
@@ -65,18 +65,36 @@ export const LeaderboardTable = ({
         header: t("user"),
         cell: ({ getValue, row }) => {
           const user = row.original;
-          const isOnStreak = user.streak_days >= streakDayTreshold; 
           return (
             <UserDisplayNameCell
               authMethod={""} // no one cares about the auth method
               displayName={getValue()}
               userId={user.user_id}
               avatarUrl={user.image}
-              streak={ isOnStreak ? ("🔥 " + String(user.streak_days + 1) ) : ( "" )}
             ></UserDisplayNameCell>
           );
         },
       }),
+      columnHelper.accessor("user_id", {
+        id: "badges",
+        header: t("badges"),
+        meta: {
+          cellProps: (x) => {
+            return { style: { fontWeight: "bold" } }
+          }
+        },
+        cell: ({ getValue, row }) => {
+          let badges:String[] = []
+
+          const user = row.original;
+          const isOnStreak = user.streak_days >= streakDayTreshold;
+          const streakString = isOnStreak ? ("🔥" + String(user.streak_days + 1) ) : ( "" )
+          badges.push(streakString)
+
+          return (
+            badges
+          );
+      }}),
       columnHelper.accessor("leader_score", {
         header: t("score"),
       }),
