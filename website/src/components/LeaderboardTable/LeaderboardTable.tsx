@@ -20,21 +20,23 @@ const jsonExpandRowModel = createJsonExpandRowModel<WindowLeaderboardEntity>();
 const streakDayThreshold = 2;
 
 const getTopUserWeekly = () => {
-  let topUser = ""
+  let topUser = "";
 
   const {
-      data: reply,
-      isLoading,
-      error,
-      lastUpdated,
-    } = useFetchBoard<LeaderboardReply & { user_stats_window?: LeaderboardReply["leaderboard"]; }>(
-      `/api/leaderboard?time_frame=month&limit=1&includeUserStats=false`
-    );
+    data: reply,
+    isLoading,
+    error,
+    lastUpdated,
+  } = useFetchBoard<LeaderboardReply & { user_stats_window?: LeaderboardReply["leaderboard"] }>(
+    `/api/leaderboard?time_frame=month&limit=1&includeUserStats=false`
+  );
 
-    if (reply) { topUser += `${reply.leaderboard[0].user_id}` }
+  if (reply) {
+    topUser += `${reply.leaderboard[0].user_id}`;
+  }
 
-    return topUser
-}
+  return topUser;
+};
 
 /**
  * Presents a grid of leaderboard entries with more detailed information.
@@ -98,19 +100,19 @@ export const LeaderboardTable = ({
         header: t("badges"),
         meta: {
           cellProps: (x) => {
-            return { style: { fontWeight: "bold" } }
-          }
+            return { style: { fontWeight: "bold" } };
+          },
         },
         cell: ({ getValue, row }) => {
-          const badges = {}
-          const topUser:string = getTopUserWeekly()
-          type BadgeKey = "top_month" | "streak"
+          const badges = {};
+          const topUser: string = getTopUserWeekly();
+          type BadgeKey = "top_month" | "streak";
 
           const user = row.original;
 
           // Check if user is top scorer of the month
-          if(topUser === user.user_id) {
-            badges["top_month"] = "🏆"
+          if (topUser === user.user_id) {
+            badges["top_month"] = "🏆";
           }
 
           // Check user streak
@@ -121,15 +123,14 @@ export const LeaderboardTable = ({
 
           // Create elements containing badges along with tooltips
           const elements = (Object.keys(badges) as BadgeKey[]).map((key: BadgeKey) => (
-            <div key={key} style={{display: "inline", paddingRight: 7}}>
+            <div key={key} style={{ display: "inline", paddingRight: 7 }}>
               <Tooltip label={t(`${key}`) /* <- idk why this shows an error */}>{badges[key]}</Tooltip>
             </div>
           ));
 
-          return (
-            <>{elements}</>
-          );
-      }}),/*
+          return <>{elements}</>;
+        },
+      }) /*
       columnHelper.accessor("user_id", {
         id: "badges",
         header: t("badges"),
@@ -149,7 +150,7 @@ export const LeaderboardTable = ({
           return (
             badges
           );
-      }}),*/
+      }}),*/,
       columnHelper.accessor("leader_score", {
         header: t("score"),
       }),
