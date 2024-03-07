@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Flex, useColorModeValue } from "@chakra-ui/react";
+import { Box, CircularProgress, Flex, Tooltip, useColorModeValue } from "@chakra-ui/react";
 import { createColumnHelper } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import { useTranslation } from "next-i18next";
@@ -17,7 +17,25 @@ type WindowLeaderboardEntity = LeaderboardEntity & { isSpaceRow?: boolean };
 
 const columnHelper = createColumnHelper<WindowLeaderboardEntity>();
 const jsonExpandRowModel = createJsonExpandRowModel<WindowLeaderboardEntity>();
-const streakDayTreshold = 2;
+const streakDayThreshold = 2;
+
+const getTopUserWeekly = () => {
+  let topUser = ""
+
+  const {
+      data: reply,
+      isLoading,
+      error,
+      lastUpdated,
+    } = useFetchBoard<LeaderboardReply & { user_stats_window?: LeaderboardReply["leaderboard"]; }>(
+      `/api/leaderboard?time_frame=month&limit=1&includeUserStats=false`
+    );
+
+    if (reply) { topUser += `${reply.leaderboard[0].user_id}` }
+
+    return topUser
+}
+
 /**
  * Presents a grid of leaderboard entries with more detailed information.
  */
@@ -84,6 +102,43 @@ export const LeaderboardTable = ({
           }
         },
         cell: ({ getValue, row }) => {
+          const badges = {}
+          const topUser:string = getTopUserWeekly()
+          type BadgeKey = "top_month" | "streak"
+
+          const user = row.original;
+
+          // Check if user is top scorer of the month
+          if(topUser === user.user_id) {
+            badges["top_month"] = "🏆"
+          }
+
+          // Check user streak
+          const isOnStreak = user.streak_days >= streakDayThreshold;
+          if (isOnStreak) {
+            badges["streak"] = `🔥${user.streak_days + 1}`;
+          }
+
+          // Create elements containing badges along with tooltips
+          const elements = (Object.keys(badges) as BadgeKey[]).map((key: BadgeKey) => (
+            <div key={key} style={{display: "inline", paddingRight: 7}}>
+              <Tooltip label={t(`${key}`) /* <- idk why this shows an error */}>{badges[key]}</Tooltip>
+            </div>
+          ));
+
+          return (
+            <>{elements}</>
+          );
+      }}),/*
+      columnHelper.accessor("user_id", {
+        id: "badges",
+        header: t("badges"),
+        meta: {
+          cellProps: (x) => {
+            return { style: { fontWeight: "bold" } }
+          }
+        },
+        cell: ({ getValue, row }) => {
           let badges:String[] = []
 
           const user = row.original;
@@ -94,7 +149,7 @@ export const LeaderboardTable = ({
           return (
             badges
           );
-      }}),
+      }}),*/
       columnHelper.accessor("leader_score", {
         header: t("score"),
       }),

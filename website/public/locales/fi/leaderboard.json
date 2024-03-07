@@ -36,5 +36,7 @@
   "weekly": "Tällä viikolla",
   "xp_progress_message": "Tarvitset vielä {{need, number, integer}} pistettä saavuttaaksesi seuraavan tason!",
   "your_account": "Tilisi",
-  "your_stats": "Tilastosi"
+  "your_stats": "Tilastosi",
+  "streak": "Päivittäisputki",
+  "top_month": "Kuukauden kovin pisteidenkerääjä"
 }
