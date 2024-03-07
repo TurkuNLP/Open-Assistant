@@ -19,7 +19,7 @@ const columnHelper = createColumnHelper<WindowLeaderboardEntity>();
 const jsonExpandRowModel = createJsonExpandRowModel<WindowLeaderboardEntity>();
 const streakDayThreshold = 2;
 
-const GetTopUserWeekly = () => {
+const getTopUserWeekly = () => {
   let topUser = ""
 
   const {
@@ -103,23 +103,24 @@ export const LeaderboardTable = ({
         },
         cell: ({ getValue, row }) => {
           const badges = {}
-          const topUser:string = GetTopUserWeekly()
+          const topUser:string = getTopUserWeekly()
+          type BadgeKey = "top_month" | "streak"
 
           const user = row.original;
 
+          // Check if user is top scorer of the month
           if(topUser === user.user_id) {
-            badges['top_month'] = "🏆"
+            badges["top_month"] = "🏆"
           }
 
+          // Check user streak
           const isOnStreak = user.streak_days >= streakDayThreshold;
-          const streakString = isOnStreak ? ("🔥" + String(user.streak_days + 1) ) : ( "" )
-          if(streakString.length !== 0) {
-            badges['streak'] = streakString
+          if (isOnStreak) {
+            badges["streak"] = `🔥${user.streak_days + 1}`;
           }
 
-          console.log(badges)
-
-          const elements = Object.keys(badges).map((key) => (
+          // Create elements containing badges along with tooltips
+          const elements = (Object.keys(badges) as BadgeKey[]).map((key: BadgeKey) => (
             <div key={key} style={{display: "inline", paddingRight: 7}}>
               <Tooltip label={t(`${key}`) /* <- idk why this shows an error */}>{badges[key]}</Tooltip>
             </div>
