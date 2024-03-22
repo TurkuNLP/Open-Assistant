@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppPropsWith
 
   const metaTitle = "Avoin Avustaja | Keskusteleva tekoäly jokaiselle";
   const metaUrl = "https://avoin-avustaja.fi/";
-  const metaImage = "/images/opengraph/opengraph-image.jpg";
+  const metaImage = "https://avoin-avustaja.fi/images/opengraph/opengraph-image.jpg";
 
   return (
     <>
