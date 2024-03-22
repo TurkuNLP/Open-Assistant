@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
-import React from "react";
+import React, { FormEvent } from "react";
 import { AdminArea } from "src/components/AdminArea";
 import { AdminLayout } from "src/components/Layout";
 import { get } from "src/lib/api";
@@ -34,6 +34,20 @@ const StatusIndex = () => {
 
   const { tasksAvailability, stats, treeManager } = dataStatus || {};
 
+  const onSystemMessageSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    let submittedText = ""
+    for (const value of formData.values()) {
+      if (typeof value === 'string') {
+        submittedText += value
+      }
+    }
+
+    // set system message somewhere here
+  }
+
   return (
     <>
       <Head>
@@ -41,7 +55,33 @@ const StatusIndex = () => {
       </Head>
 
       <AdminArea>
-        <SimpleGrid columns={[1, 1, 1, 1, 1, 2]} gap={4}>
+        <SimpleGrid columns={[1, 1, 1, 1, 1, 1, 2]} gap={4}>
+          <Card>
+            <CardBody>
+              <Text as="h1" fontSize="3xl" textAlign="center">
+                Post a system status message
+              </Text>
+              <Card>
+                <CardBody>
+                  <form onSubmit={onSystemMessageSubmit} className="w-full">
+                    <ul className="list-none flex">
+                      <li className="w-full mr-3">
+                        <input type="text" name="Input System Message" className="border-2 rounded-md h-10 w-full" autoComplete="off" disabled={true} placeholder={"Planned feature, doesn't work yet."}/>
+                      </li>
+                      <li>
+                        <button type="submit" className="text-blue-50 rounded-md bg-gray-300 h-10 w-32" disabled={true}>Submit</button>
+                      </li>
+                    </ul>
+                  </form>
+                  <div>
+                    <p className="mt-6">Current system message:</p>
+                    <p>{ /* print system message here */ }</p>
+                  </div>
+                </CardBody>
+              </Card>
+            </CardBody>
+          </Card>
+
           <Card>
             <CardBody>
               <Text as="h1" fontSize="3xl" textAlign="center">

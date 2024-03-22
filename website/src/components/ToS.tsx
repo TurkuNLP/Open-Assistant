@@ -11,17 +11,17 @@ const TermsData = [
       {
         number: "1.1",
         title: "",
-        desc: `TurkuNLP, Turun yliopisto, Vesilinnantie 3, 20014 Turku, Suomi (jäljempänä 'TurkuNLP') ylläpitää verkkoportaalia, jolla voidaan tuottaa Avoin Assistentti-niminen koneoppimismalli yleisön tarjoamien tietojen avulla.`,
+        desc: `TurkuNLP, Teknillinen tiedekunta, 20014 Turun yliopisto, Suomi (jäljempänä 'TurkuNLP') ylläpitää verkkosivustoa (Avoin Avustaja), jonka avulla voidaan tuottaa koneoppimismalleja yleisön tarjoamien tietojen avulla.`,
       },
       {
         number: "1.2",
         title: "",
-        desc: "Nämä käyttöehdot säätelevät portaalin käyttäjien ja TurkuNLP:n välistä käyttäjäsuhdetta.",
+        desc: "Nämä käyttöehdot säätelevät verkkosivuston käyttäjien ja TurkuNLP:n välistä käyttäjäsuhdetta.",
       },
       {
         number: "1.3",
         title: "",
-        desc: "TurkuNLP pidättää oikeuden muuttaa näitä käyttöehtoja milloin tahansa, myös jo rekisteröityjen henkilöiden osalta, jos se on tarpeen lainmuutosten, lainkäyttöalueen muutosten, taloudellisten olosuhteiden muutosten tai myöhemmin ilmenevien puutteiden vuoksi. Käyttäjälle ilmoitetaan tällaisista muutoksista hyvissä ajoin sähköpostitse. Käyttäjällä on mahdollisuus vastustaa muutoksia 14 päivän ajan tämän sähköpostin vastaanottamisesta. Jos käyttäjä ei vastusta muutoksia ja jatkaa portaalin käyttöä vastalauseajan päättymisen jälkeen, muutokset katsotaan hyväksytyiksi määräajan päättymisestä alkaen. Jos käyttäjä vastustaa muutoksia kahden viikon määräajan kuluessa, TurkuNLP:llä on oikeus sulkea portaali käyttäjältä. Käyttäjälle ilmoitetaan näistä vaikutuksista sähköpostitse.",
+        desc: "TurkuNLP pidättää oikeuden muuttaa näitä käyttöehtoja milloin tahansa, myös jo rekisteröityjen henkilöiden osalta, jos se on tarpeen lainmuutosten, lainkäyttöalueen muutosten, taloudellisten olosuhteiden muutosten tai myöhemmin ilmenevien puutteiden vuoksi. Käyttäjälle ilmoitetaan tällaisista muutoksista hyvissä ajoin sähköpostitse. Käyttäjällä on mahdollisuus vastustaa muutoksia 14 päivän ajan tämän sähköpostin vastaanottamisesta. Jos käyttäjä ei vastusta muutoksia ja jatkaa verkkosivuston käyttöä vastalauseajan päättymisen jälkeen, muutokset katsotaan hyväksytyiksi määräajan päättymisestä alkaen. Jos käyttäjä vastustaa muutoksia kahden viikon määräajan kuluessa, TurkuNLP:llä on oikeus evätä käyttäjän pääsy verkkosivustolle. Käyttäjälle ilmoitetaan näistä vaikutuksista sähköpostitse.",
       },
     ],
   },
@@ -33,17 +33,17 @@ const TermsData = [
       {
         number: "2.1",
         title: "",
-        desc: "Portaali toimii alustana, jonka avulla voidaan luoda tietoja vuorovaikutteisen agentin kouluttamiseksi tieteellisiin tarkoituksiin. Kaikkea palvelun kautta luotua tekstiä ja kehotuksia käytetään tieteellisiin tarkoituksiin, erityisesti tekoälyn optimointiin.",
+        desc: "Verkkosivusto toimii alustana, jonka avulla voidaan luoda tietoja vuorovaikutteisen agentin kouluttamiseksi tieteellisiin tarkoituksiin. Kaikkea palvelun kautta luotua tekstiä ja kehotuksia käytetään tieteellisiin tarkoituksiin, erityisesti tekoälyn optimointiin.",
       },
       {
         number: "2.2",
         title: "",
-        desc: "Tekstien syöttäminen portaaliin ja tekoälyn suorittama tekstin tuottaminen portaalissa eivät johda tekijänoikeudella suojattujen teosten syntymiseen. Käyttäjällä, joka on syöttänyt tekstin tekstin tuottamista varten, ei ole yksinoikeutta käyttää tuotettua tekstiä eikä tekijänoikeuksia siihen.",
+        desc: "Tekstien syöttäminen verkkosivustoon ja tekoälyn suorittama tekstin tuottaminen verkkosivustossa eivät johda tekijänoikeudella suojattujen teosten syntymiseen. Käyttäjällä, joka on syöttänyt tekstin tekstin tuottamista varten, ei ole yksinoikeutta käyttää tuotettua tekstiä eikä tekijänoikeuksia siihen.",
       },
       {
         number: "2.3",
         title: "",
-        desc: "TurkuNLP pyrkii varmistamaan, että portaalia voidaan käyttää mahdollisimman keskeytyksettä. Portaalin käyttöön ei kuitenkaan voi kohdistua oikeudellisia vaatimuksia. TurkuNLP pidättää oikeuden harkintansa mukaan muuttaa portaalia milloin tahansa ja ilman ennakkoilmoitusta, lopettaa sen toiminnan tai sulkea yksittäiset käyttäjät sen käytön ulkopuolelle. Lisäksi ei voida poissulkea mahdollisuutta, että tilapäisiä rajoituksia tai keskeytyksiä voi esiintyä teknisten vikojen vuoksi (kuten sähköntoimituksen keskeytyminen, laitteisto- ja ohjelmistovirheet ja tekniset ongelmat tietoliikenteessä).",
+        desc: "TurkuNLP pyrkii varmistamaan, että verkkosivustoa voidaan käyttää mahdollisimman keskeytyksettä. Verkkosivuston käyttöön ei kuitenkaan voi kohdistua oikeudellisia vaatimuksia. TurkuNLP pidättää oikeuden harkintansa mukaan muuttaa verkkosivustoa milloin tahansa ja ilman ennakkoilmoitusta, lopettaa sen toiminnan tai sulkea yksittäiset käyttäjät sen käytön ulkopuolelle. Lisäksi ei voida poissulkea mahdollisuutta, että tilapäisiä rajoituksia tai keskeytyksiä voi esiintyä teknisten vikojen vuoksi (kuten sähköntoimituksen keskeytyminen, laitteisto- ja ohjelmistovirheet ja tekniset ongelmat tietoliikenteessä).",
       },
     ],
   },
@@ -55,17 +55,17 @@ const TermsData = [
       {
         number: "3.1",
         title: "",
-        desc: "Käyttäjä saa käyttää portaalia vain aiottuun tarkoitukseen. Käyttäjä ei saa väärinkäyttää portaalia. Käyttäjä sitoutuu olemaan tuottamatta tekstiä, joka rikkoo rikoslakia, nuorisonsuojelusäännöksiä tai seuraavien maiden voimassa olevia lakeja: Suomi ja käyttäjän asuinpaikka. Erityisesti on kiellettyä syöttää tekstejä, jotka johtavat pornografisen, väkivaltaa ylistävän tai pedoseksuaalisen sisällön ja/tai kolmansien osapuolten henkilökohtaisia oikeuksia loukkaavan sisällön luomiseen. TurkuNLP pidättää itsellään oikeuden tehdä rikosilmoitus toimivaltaisille viranomaisille, jos rikkomuksia tapahtuu.",
+        desc: "Käyttäjä saa käyttää verkkosivustoa vain aiottuun tarkoitukseen. Käyttäjä ei saa väärinkäyttää verkkosivustoa. Käyttäjä sitoutuu olemaan tuottamatta tekstiä, joka rikkoo rikoslakia, nuorisonsuojelusäännöksiä tai seuraavien maiden voimassa olevia lakeja: Suomi ja käyttäjän asuinpaikka. Erityisesti on kiellettyä syöttää tekstejä, jotka johtavat pornografisen, väkivaltaa ylistävän tai pedofilisen ja/tai kolmansien osapuolten henkilökohtaisia oikeuksia loukkaavan sisällön luomiseen. TurkuNLP pidättää itsellään oikeuden tehdä rikosilmoitus toimivaltaisille viranomaisille, jos rikkomuksia tapahtuu.",
       },
       {
         number: "3.2",
         title: "",
-        desc: "Käyttäjä sitoutuu olemaan käyttämättä portaalin käytön yhteydessä ohjelmia, algoritmeja tai muita ohjelmistoja, jotka voivat häiritä portaalin toimintaa. Käyttäjä ei myöskään saa ryhtyä mihinkään toimenpiteisiin, jotka voivat aiheuttaa kohtuutonta tai liiallista kuormitusta portaalin infrastruktuurille tai häiritä sitä.",
+        desc: "Käyttäjä sitoutuu olemaan käyttämättä verkkosivuston käytön yhteydessä ohjelmia, algoritmeja tai muita ohjelmistoja, jotka voivat häiritä verkkosivuston toimintaa. Käyttäjä ei myöskään saa ryhtyä mihinkään toimenpiteisiin, jotka voivat aiheuttaa kohtuutonta tai liiallista kuormitusta verkkosivuston infrastruktuurille tai häiritä sitä.",
       },
       {
         number: "3.3",
         title: "",
-        desc: "Jos käyttäjä havaitsee portaalissa ilmeisiä virheitä, jotka voivat johtaa portaalin tai sen sisällön väärinkäyttöön, käyttäjä on velvollinen ilmoittamaan virheestä TurkuNLP:lle viipymättä.",
+        desc: "Jos käyttäjä havaitsee verkkosivustossa ilmeisiä virheitä, jotka voivat johtaa verkkosivuston tai sen sisällön väärinkäyttöön, käyttäjä on velvollinen ilmoittamaan virheestä TurkuNLP:lle viipymättä.",
       },
       {
         number: "3.4",
@@ -112,7 +112,7 @@ const TermsData = [
       {
         number: "4.7",
         title: "",
-        desc: "TurkuNLP ei ole vastuussa portaalissa tuotetun sisällön käytöstä, joka on tuotettu portaalin ulkopuolisella tekstinsyötöllä. Erityisesti TurkuNLP ei ole vastuussa mistään vahingoista, joita käyttäjälle aiheutuu tekijänoikeuksien tai yksinoikeuksien haltuunotosta.",
+        desc: "TurkuNLP ei ole vastuussa verkkosivustossa tuotetun sisällön käytöstä, joka on tuotettu verkkosivuston ulkopuolisella tekstinsyötöllä. Erityisesti TurkuNLP ei ole vastuussa mistään vahingoista, joita käyttäjälle aiheutuu tekijänoikeuksien tai yksinoikeuksien haltuunotosta.",
       },
     ],
   },
