@@ -1,8 +1,8 @@
 {
-  "blurb": "Auta meitä kehittämään täysin suomenkielinen keskusteleva tekoäly!",
+  "blurb": "Auta meitä kehittämään suomenkielinen keskusteleva tekoäly!",
   "blurb1": "TurkuNLP on Turun yliopistossa toimiva työryhmä, joka tutkii ja kehittää avointa kieliteknologiaa. Nyt kehitämme täysin suomenkielistä keskustelevaa tekoälyä. Keksimällä arkisia kysymyksiä ja vastaamalla niihin tekoälyn tavoin, voit auttaa meitä keräämään opetusdataa tekoälyn koulutusta varten.",
   "chat_with_our_assistant": "Keskustele Avustajamme kanssa",
-  "description": "Suomenkielinen tekoäly kaikkien saataville. TurkuNLP:n projekti avoimen ja suomalaisen keskustelevan GPT-kielimallin luomiseksi.",
+  "description": "Auta meitä kehittämään suomenkielinen keskusteleva tekoäly! TurkuNLP-tutkimusryhmän projekti avoimen avustajaluonteisen kielimallin kehittämiseksi.",
   "faq_items": {
     "q0": "Kuinka pitkällä projekti on?",
     "a0": "Olemme vasta alustavassa kehitysvaiheessa. Työskentelemme soveltaaksemme RLHF-menetelmiä isoihin kielimalleihin.",

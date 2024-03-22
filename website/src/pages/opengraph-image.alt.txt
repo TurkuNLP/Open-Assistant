@@ -1,0 +1,1 @@
+Avoin Avustaja – Keskusteleva tekoäly kaikkien saataville. Turun yliopiston teknillisessä tiedekunnassa toimivan TurkuNLP-tutkimusryhmän projekti avoimen avustajaluonteisen kielimallin kehittämiseksi.

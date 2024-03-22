@@ -38,19 +38,27 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppPropsWith
     document.body.dir = direction;
   }, [direction]);
 
+  const metaTitle = "Avoin Avustaja | Keskusteleva tekoäly jokaiselle";
+  const metaUrl = "https://avoin-avustaja.fi/";
+
   return (
     <>
       <Head>
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Avoin Avustaja | Keskusteleva tekoäly" />
-        <meta property="og:url" content="https://avoin-avustaja.fi/" />
-        <meta property="og:description" content={t("index:description")} />
-        <meta
-          property="og:image"
-          content="https://avoin-avustaja.fi/_next/image?url=%2Fimages%2Flogos%2Ffavicon.png&w=256&q=75"
-        />
-        <meta property="og:image:type" content="image/png" />
+        {/* HTML Meta */}
         <meta name="description" key="description" content={t("index:description")} />
+
+        {/* Facebook Meta */}
+        <meta property="og:url" content={metaUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={t("index:description")} />
+
+        {/* X Meta */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:domain" content="avoin-avustaja.fi" />
+        <meta name="twitter:url" content={metaUrl} />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={t("index:description")} />
       </Head>
       <FlagsProvider value={flags}>
         <Chakra>

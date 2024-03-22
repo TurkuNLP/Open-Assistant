@@ -38,15 +38,15 @@ const StatusIndex = () => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    let submittedText = ""
+    let submittedText = "";
     for (const value of formData.values()) {
-      if (typeof value === 'string') {
-        submittedText += value
+      if (typeof value === "string") {
+        submittedText += value;
       }
     }
 
     // set system message somewhere here
-  }
+  };
 
   return (
     <>
@@ -66,16 +66,25 @@ const StatusIndex = () => {
                   <form onSubmit={onSystemMessageSubmit} className="w-full">
                     <ul className="list-none flex">
                       <li className="w-full mr-3">
-                        <input type="text" name="Input System Message" className="border-2 rounded-md h-10 w-full" autoComplete="off" disabled={true} placeholder={"Planned feature, doesn't work yet."}/>
+                        <input
+                          type="text"
+                          name="Input System Message"
+                          className="border-2 rounded-md h-10 w-full"
+                          autoComplete="off"
+                          disabled={true}
+                          placeholder={"Planned feature, doesn't work yet."}
+                        />
                       </li>
                       <li>
-                        <button type="submit" className="text-blue-50 rounded-md bg-gray-300 h-10 w-32" disabled={true}>Submit</button>
+                        <button type="submit" className="text-blue-50 rounded-md bg-gray-300 h-10 w-32" disabled={true}>
+                          Submit
+                        </button>
                       </li>
                     </ul>
                   </form>
                   <div>
                     <p className="mt-6">Current system message:</p>
-                    <p>{ /* print system message here */ }</p>
+                    <p>{/* print system message here */}</p>
                   </div>
                 </CardBody>
               </Card>

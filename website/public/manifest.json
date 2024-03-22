@@ -1,7 +1,7 @@
 {
   "name": "Avoin Avustaja",
   "short_name": "Avoin Avustaja",
-  "description": "Avoimen Avustajan tarkoituksena on mahdollistaa suuren keskustelevan kielimallin käyttö jokaiselle.",
+  "description": "Auta meitä kehittämään täysin suomenkielinen keskusteleva tekoäly!",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
