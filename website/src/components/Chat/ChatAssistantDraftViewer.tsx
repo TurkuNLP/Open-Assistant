@@ -53,7 +53,7 @@ export const ChatAssistantDraftViewer = ({
         marginBottom={{ base: 1.5, md: 0 }}
         borderColor={"blackAlpha.200"}
         _dark={{ backgroundColor: "blackAlpha.300" }}
-        src="/images/logos/logo.png"
+        src="/images/logos/logo.webp"
       />
       <Flex
         background={containerBackgroundColor}

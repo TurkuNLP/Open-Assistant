@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
+import { colors } from "src/styles/Theme/colors";
 
 export function SlimFooter() {
   const { t } = useTranslation();
@@ -10,9 +11,26 @@ export function SlimFooter() {
     <footer>
       <Divider />
       <Box display="flex" gap="4" flexDir="column" alignItems="center" my="8">
-        <Box display="flex" justifyContent="center" alignItems="center" h="20" minWidth="70" bg="gray.200" borderRadius="20%">
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          h="20"
+          minWidth="70"
+          bg="gray.100"
+          borderRadius="20%"
+          _dark={{
+            bg: colors.dark.bg,
+          }}
+        >
           <Link href="/" aria-label="Home" className="flex items-center gap-1">
-            <Image src="/images/logos/logo.png" className="mx-auto object-fill" width="48" height="48" alt="logo" />
+            <Image
+              src="/images/logos/logo_mono.webp"
+              className="mx-auto object-fill"
+              width="48"
+              height="48"
+              alt="logo"
+            />
           </Link>
         </Box>
         <nav>
@@ -23,8 +41,11 @@ export function SlimFooter() {
             <FooterLink href="https://github.com/TurkuNLP/Open-Assistant" label={t("github")} />
             <FooterLink href="https://huggingface.co/turkunlp" label={t("hugging_face")} />
             {/* <FooterLink href="https://ykilcher.com/open-assistant-discord" label={t("discord")} /> */}
-            <FooterLink href="https://projects.laion.ai/Open-Assistant/docs/intro" label={t("docs")} />
-            <FooterLink href="https://projects.laion.ai/Open-Assistant/docs/faq" label={t("faq")} />
+            <FooterLink href="https://github.com/TurkuNLP/Open-Assistant/wiki" label={t("docs")} />
+            <FooterLink
+              href="https://github.com/TurkuNLP/Open-Assistant/wiki/Usein-Kysytyt-Kysymykset"
+              label={t("faq")}
+            />
           </Box>
         </nav>
       </Box>

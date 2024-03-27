@@ -19,7 +19,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/intro"
           >
-            Open Assistant Introduction
+            Avoimen Avustajan esittely
           </Link>
         </div>
       </div>

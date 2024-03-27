@@ -19,6 +19,7 @@ from oasst_backend.models import (
     MessageEmbedding,
     MessageEmoji,
     MessageReaction,
+    MessageRevision,
     MessageToxicity,
     MessageTreeState,
     Task,
@@ -29,8 +30,8 @@ from oasst_backend.models import (
 from oasst_backend.models.payload_column_type import PayloadContainer
 from oasst_backend.task_repository import TaskRepository, validate_frontend_message_id
 from oasst_backend.user_repository import UserRepository
-from oasst_backend.utils import discord
 from oasst_backend.utils.database_utils import CommitMode, db_lang_to_postgres_ts_lang, managed_tx_method
+from oasst_backend.utils.discord import send_new_report_message
 from oasst_shared.exceptions import OasstError, OasstErrorCode
 from oasst_shared.schemas import protocol as protocol_schema
 from oasst_shared.schemas.protocol import SystemStats
@@ -161,6 +162,23 @@ class PromptRepository:
         )
         self.db.add(message)
         return message
+
+    @managed_tx_method(CommitMode.FLUSH)
+    def insert_revision(
+        self,
+        payload: db_payload.MessagePayload,
+        message_id: UUID,
+        user_id: UUID,
+        created_date: datetime,
+    ) -> MessageRevision:
+        message_revision = MessageRevision(
+            payload=payload,
+            message_id=message_id,
+            user_id=user_id,
+            created_date=created_date,
+        )
+        self.db.add(message_revision)
+        return message_revision
 
     def _validate_task(
         self,
@@ -313,6 +331,36 @@ class PromptRepository:
             f"text[:100]='{user_message.text[:100]}', role='{user_message.role}', lang='{user_message.lang}'"
         )
         return user_message
+
+    @managed_tx_method(CommitMode.FLUSH)
+    def revise_message(self, message_id: UUID, new_content: str):
+        # store original message as revision if not already stored
+        message = self.fetch_message(message_id)
+        if not message.edited:
+            self.insert_revision(
+                payload=message.payload,
+                message_id=message_id,
+                user_id=message.user_id,
+                created_date=message.created_date,
+            )
+
+        # store new version as revision
+        self.insert_revision(
+            payload=PayloadContainer(payload=db_payload.MessagePayload(text=new_content)),
+            message_id=message_id,
+            user_id=self.user_id,
+            created_date=utcnow(),
+        )
+
+        # update message with new content
+        updated_message_data = {
+            "payload": PayloadContainer(payload=db_payload.MessagePayload(text=new_content)),
+            "edited": True,
+            "search_vector": None,
+        }
+
+        query = update(Message).where(Message.id == message_id).values(**updated_message_data)
+        self.db.execute(query)
 
     @managed_tx_method(CommitMode.FLUSH)
     def store_rating(self, rating: protocol_schema.MessageRating) -> MessageReaction:
@@ -547,7 +595,19 @@ class PromptRepository:
                         message_id, protocol_schema.EmojiOp.add, protocol_schema.EmojiCode.red_flag
                     )
 
-                    discord.send_new_report_message(message=message, label_text=text_labels.text, user_id=self.user_id)
+                    message_details = {
+                        "message_id": message_id,
+                        "message_text": message.text[:500] + "..." if len(message.text) > 500 else message.text,
+                        "role": message.role.upper(),
+                        "lang": message.lang.upper(),
+                        "thumbs_up": message.emojis.get("+1") or 0,
+                        "thumbs_down": message.emojis.get("-1") or 0,
+                        "red_flag": message.emojis.get("red_flag") or 0,
+                    }
+
+                    send_new_report_message.delay(
+                        message_details=message_details, label_text=text_labels.text, user_id=self.user_id
+                    )
 
                 # update existing record for repeated updates (same user no task associated)
                 existing_text_label = self.fetch_non_task_text_labels(message_id, self.user_id)
@@ -752,6 +812,16 @@ class PromptRepository:
         if user_id is not None:
             query = query.filter(TextLabels.user_id == user_id)
         return query.all()
+
+    def fetch_message_revision_history(self, message_id: UUID) -> list[MessageRevision]:
+        # the revisions are sorted by time using the uuid7 id
+        revisions: list[MessageRevision] = sorted(
+            self.db.query(MessageRevision).filter(MessageRevision.message_id == message_id).all(),
+            key=lambda revision: revision.id.int >> 80,
+        )
+        for revision in revisions:
+            revision._user_is_author = self.user_id == revision.user_id
+        return revisions
 
     @staticmethod
     def trace_conversation(messages: list[Message] | dict[UUID, Message], last_message: Message) -> list[Message]:

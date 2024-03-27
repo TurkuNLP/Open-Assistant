@@ -1,6 +1,7 @@
 {
   "accepted": "↪ Hyväksyttyjä",
   "accepted_prompts": "Hyväksytyt kehotteet",
+  "badges": "Ansiomerkit",
   "daily": "Tänään",
   "day": "Päivä",
   "good_rankings": "Hyvät arviot",
@@ -9,7 +10,7 @@
   "labels_simple": "Arviot (yksinkertainen)",
   "last_updated_at": "Viimeksi päivitetty: {{val, datetime}}",
   "leaderboard": "Tulosluettelo",
-  "level_progress_message": "Sinulla on {{score}} pistettä, ja saavuttanut tason {{level,number,integer}}!",
+  "level_progress_message": "Olet saanut {{score}} pistettä ja saavuttanut tason {{level,number,integer}}!",
   "month": "Kuukausi",
   "monthly": "Tässä kuussa",
   "next": "Seuraava",
@@ -20,11 +21,12 @@
   "prompt": "Kehotteet",
   "rank": "Sijoitus",
   "rankings": "Sijoitukset",
+  "reached_max_level": "Olet saavuttanut maksimitason! Kiitos kovasta työstäsi Avoimen Avustajan hyväksi!",
   "replies_assistant": "Vastauksia avustajana",
   "replies_prompter": "Vastauksia käyttäjänä",
   "reply": "Vastauksia",
   "reply_ranked_1": "Vastaukset ensimmäisellä sijalla",
-  "score": "Tulos",
+  "score": "Pisteet",
   "top_5_contributors_today": "Päivän 5 parasta osallistujaa",
   "total": "Yhteensä",
   "user": "Käyttäjä",
@@ -34,5 +36,7 @@
   "weekly": "Tällä viikolla",
   "xp_progress_message": "Tarvitset vielä {{need, number, integer}} pistettä saavuttaaksesi seuraavan tason!",
   "your_account": "Tilisi",
-  "your_stats": "Tilastosi"
+  "your_stats": "Tilastosi",
+  "streak": "Päivittäisputki",
+  "top_month": "Kuukauden kovin pisteidenkerääjä"
 }

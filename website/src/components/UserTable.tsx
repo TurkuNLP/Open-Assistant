@@ -17,16 +17,16 @@ const columns: DataTableColumnDef<User>[] = [
     header: "ID",
   }),
   columnHelper.accessor("id", {
-    header: "Auth ID",
+    header: "Todennus-ID",
     meta: {
       filterable: true,
     },
   }),
   columnHelper.accessor("auth_method", {
-    header: "Auth Method",
+    header: "Todennusmetodi",
   }),
   columnHelper.accessor("display_name", {
-    header: "Name",
+    header: "Käyttäjänimi",
     meta: {
       filterable: true,
       cellProps: (x) => {
@@ -35,7 +35,7 @@ const columns: DataTableColumnDef<User>[] = [
     },
   }),
   columnHelper.accessor("role", {
-    header: "Role",
+    header: "Rooli",
   }),
   columnHelper.accessor((user) => user.user_id, {
     cell: ({ getValue }) => (
@@ -46,7 +46,7 @@ const columns: DataTableColumnDef<User>[] = [
         icon={<Pencil size="1em"></Pencil>}
       ></IconButton>
     ),
-    header: "Update",
+    header: "Muokkaa",
   }),
 ];
 

@@ -1,0 +1,16 @@
+{
+  "default": "Jokin meni vikaan!",
+  "err_1000": "Väärä tehtävätyyppi",
+  "err_1001": "Tehtävän hyväksyminen epäonnistui",
+  "err_1002": "Tehtävän hylkääminen epäonnistui",
+  "err_1003": "Väärä vastaustyyppi",
+  "err_1004": "Vuorovaikutuspyyntö epäonnistui",
+  "err_1005": "Tehtävän luominen epäonnistui",
+  "err_1006": "Tehtävätyypin {{task_type}} tehtäviä ei tällä hetkellä ole saatavilla",
+  "err_1007": "Tehtävien saatavuushaku epäonnistui",
+  "err_1008": "Viesti on liian pitkä",
+  "err_1009": "Viimeisimmissä viesteissäsi on duplikaatteja",
+  "err_1010": "Viesti on tyhjä",
+  "err_1011": "Et voi vastata samaan viestiin kahteen kertaan",
+  "err_1012": "Sinulla on liian monta viestiä käsiteltävänä. Yritä uudelleen muutaman minuutin kuluttua."
+}

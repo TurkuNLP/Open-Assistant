@@ -1,9 +1,7 @@
-import { AxiosError } from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getToken } from "next-auth/jwt";
 import { logger } from "src/lib/logger";
 import { createApiClientFromUser } from "src/lib/oasst_client_factory";
-import { createInferenceClient } from "src/lib/oasst_inference_client";
 import prisma from "src/lib/prismadb";
 import { getBackendUserCore } from "src/lib/users";
 

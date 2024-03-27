@@ -1,6 +1,7 @@
 {
   "accepted": "↪ Accepted",
   "accepted_prompts": "Accepted prompts",
+  "badges": "Badges",
   "daily": "Daily",
   "day": "Day",
   "good_rankings": "Good rankings",
@@ -35,5 +36,7 @@
   "weekly": "Weekly",
   "xp_progress_message": "You need {{need, number, integer}} more points to reach the next level!",
   "your_account": "Your account",
-  "your_stats": "Your statistics"
+  "your_stats": "Your statistics",
+  "streak": "Daily streak",
+  "top_month": "Top scorer of the month"
 }

@@ -2,7 +2,7 @@
 
 # Docs Site
 
-https://laion-ai.github.io/Open-Assistant/
+https://docs.avoin-avustaja.fi/
 
 This [site](https://laion-ai.github.io/Open-Assistant/) is built using
 [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
@@ -33,6 +33,21 @@ From within the `/docs/` folder.
 ```
 $ yarn
 ```
+
+### Deployment
+
+Avoin Avustaja uses a self-hosted Docker container to deploy the site.
+
+Make sure you're in the ./docs/ -path before running these commands.
+
+```bash
+yarn build
+docker build -t aa-docs .
+docker run -p 8090:3000 aa-docs
+```
+The production server should be now running in http://localhost:8090/.
+
+| TODO: Make docs run from `docker-compose.yaml`. Also decide whether we should use GitHub pages for this instead. -Joona
 
 ### Local Development
 

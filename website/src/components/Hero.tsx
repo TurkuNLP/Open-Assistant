@@ -1,4 +1,4 @@
-import { Box, Button, Text, useColorMode, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Button, Text, useBreakpointValue, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
@@ -12,9 +12,8 @@ export function Hero() {
   const { ENABLE_CHAT } = useBrowserConfig();
   const { colorMode } = useColorMode();
 
-  const dashboard_button_size = useBreakpointValue({base: '4.5em', md: '200'}, {fallback: '200'})
-  const other_button_size = useBreakpointValue({base: '1em', lg: '2em'}, {fallback: '200'})
-
+  const dashboard_button_size = useBreakpointValue({ base: "4.5em", md: "200" }, { fallback: "200" });
+  const other_button_size = useBreakpointValue({ base: "1em", lg: "2em" }, { fallback: "200" });
 
   const pTextColor = colorMode === "light" ? "text-gray-600" : "text-white";
   const fancyTextGradientClasses =
@@ -36,7 +35,7 @@ export function Hero() {
             <Text className={`mt-6 text-lg ${pTextColor}`}>{t("blurb")}</Text>
             <Text className={`mt-6 text-lg ${pTextColor}`}>{t("blurb1")}</Text>
             <Text className={`mt-6 text-lg ${pTextColor}`}>
-              Sivustomme pohjautuu avoimeen OpenAssistant-projektiin, mutta toimintamme ei muuten liity heihin. 
+              Sivustomme pohjautuu avoimeen OpenAssistant-projektiin, mutta toimintamme ei muuten liity heihin.
             </Text>
             <Box className={`mt-6 flex gap-6 ${pTextColor} flex-wrap`}>
               {/* {ENABLE_CHAT && (
@@ -47,17 +46,22 @@ export function Hero() {
                 </Link>
               )} */}
               <Link href="/dashboard" aria-label="Dashboard">
-                <Button variant="outline" colorScheme="blue" fontSize="xl"  px={dashboard_button_size} py={100}>
+                <Button variant="outline" colorScheme="blue" fontSize="xl" px={dashboard_button_size} py={100}>
                   {t("index:help_us_improve")}
                 </Button>
               </Link>
+              <Link href="https://www.youtube.com/watch?v=FxngtUlL8RA" aria-label="Hugging face">
+                <Button variant="solid" colorScheme="blue" px={other_button_size} py={6}>
+                  {t("index:promo_video_button")}
+                </Button>
+              </Link>
               <Link href="https://turkunlp.org/" aria-label="Hugging face">
-                <Button variant="solid" colorScheme="blue"  px={other_button_size} py={6}>
+                <Button variant="solid" colorScheme="blue" px={other_button_size} py={6}>
                   {t("index:hugging_face_link")}
                 </Button>
               </Link>
               <Link href="https://open-assistant.io/" aria-label="Open-Assistant">
-                <Button variant="solid" colorScheme="blue"  px={other_button_size} py={6}>
+                <Button variant="solid" colorScheme="blue" px={other_button_size} py={6}>
                   {t("index:open_assistant_link")}
                   {/* {t("index:open_assistant_link")} */}
                 </Button>
@@ -68,7 +72,7 @@ export function Hero() {
             <AnimatedCircles />
             <Box className="-mx-4 h-[448px] px-9 [mask-image:linear-gradient(to_bottom,white_60%,transparent)] sm:mx-0 lg:absolute lg:-inset-x-10 lg:-top-10 lg:-bottom-20 lg:h-auto lg:px-0 lg:pt-10 xl:-bottom-32">
               <Image
-                src="/images/logos/logo.png"
+                src="/images/logos/logo.webp"
                 className="mx-auto mr-6 object-fill"
                 width="450"
                 height="450"

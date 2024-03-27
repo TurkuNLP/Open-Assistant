@@ -6,19 +6,19 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Open Assistant",
-  tagline: "Build the assistant of the future!",
-  url: "https://LAION-AI.github.io",
+  title: "Avoin Avustaja",
+  tagline: "Auta meitä luomaan tulevaisuuden tekoälyavustaja!",
+  url: "https://turkunlp.org/",
   trailingSlash: false,
-  baseUrl: "/Open-Assistant/",
+  baseUrl: "/avoin-avustaja/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/logo.svg",
+  favicon: "img/favicon.png",
   staticDirectories: ["public", "static", "docs/data/img"],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "LAION-AI", // Usually your GitHub org/user name.
+  organizationName: "TurkuNLP", // Usually your GitHub org/username.
   projectName: "Open-Assistant", // Usually your repo name.
   deploymentBranch: "main",
 
@@ -26,8 +26,8 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
+    defaultLocale: "fi",
+    locales: ["fi"],
   },
   markdown: {
     mermaid: true,
@@ -48,17 +48,17 @@ const config = {
         blog: {
           routeBasePath: "/blog",
           showReadingTime: true,
-          blogTitle: "OpenAssistant Blog",
-          blogDescription: "Home of the OpenAssistant blog.",
-          blogSidebarTitle: "Blog Posts",
+          blogTitle: "Julkaisut",
+          blogDescription: "Täältä löydät Avoimeen Avustajaan liittyviä kirjoituksia.",
+          blogSidebarTitle: "Julkaisut",
           blogSidebarCount: "ALL",
           postsPerPage: "ALL",
           feedOptions: {
             type: "all",
-            title: "OpenAssistant Blog",
-            description: "Home of the OpenAssistant blog.",
-            language: "en",
-            copyright: `Copyright © ${new Date().getFullYear()} OpenAssistant.`,
+            title: "Avoimen Avustajan julkaisut",
+            description: "Täältä löydät Avoimeen Avustajaan liittyviä kirjoituksia.",
+            language: "fi",
+            copyright: `Tekijänoikeus © ${new Date().getFullYear()} Avoin Avustaja & OpenAssistant.`,
           },
         },
         theme: {
@@ -72,32 +72,32 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "Open Assistant",
+        title: "Avoin Avustaja",
         logo: {
-          alt: "Open Assistant Logo",
-          src: "img/logo.svg",
+          alt: "Avoimen Avustajan logo",
+          src: "img/logo_192x192.webp",
         },
         items: [
           {
-            href: "https://open-assistant.io/",
-            label: "App",
+            href: "https://avoin-avustaja.fi/",
+            label: "Sovellus",
             position: "left",
           },
-          {
-            href: "https://open-assistant.io/chat",
+          /*{
+            href: "https://avoin-avustaja.fi/chat",
             label: "Chat",
             position: "left",
-          },
+          },*/
           {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "Docs",
+            label: "Dokumentaatio",
           },
-          { to: "/blog", label: "Blog", position: "left" },
+          { to: "/blog", label: "Julkaisut", position: "left" },
           { to: "/api", label: "API", position: "left" },
           {
-            href: "https://github.com/LAION-AI/Open-Assistant",
+            href: "https://github.com/TurkuNLP/Open-Assistant",
             label: "GitHub",
             position: "right",
           },
@@ -107,7 +107,7 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Community",
+            title: "Yhteisöt",
             items: [
               {
                 label: "OpenAssistant Contributors Discord",
@@ -124,20 +124,20 @@ const config = {
             ],
           },
           {
-            title: "Resources",
+            title: "Lisätietoja",
             items: [
               {
                 label: "GitHub",
-                href: "https://github.com/LAION-AI/Open-Assistant",
+                href: "https://github.com/TurkuNLP/Open-Assistant",
               },
               {
                 label: "FAQ",
-                href: "https://projects.laion.ai/Open-Assistant/docs/faq",
+                href: "https://docs.avoin-avustaja.fi/avoin-avustaja/docs/faq",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} laion.ai. Built with Docusaurus.`,
+        copyright: `Tekijänoikeus © ${new Date().getFullYear()} TurkuNLP & laion.ai. Tehty käyttäen Docusaurusta.`,
       },
       prism: {
         theme: lightCodeTheme,

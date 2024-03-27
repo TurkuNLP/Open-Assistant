@@ -47,7 +47,7 @@ export const AdminLayout = ({ children }: PropsWithChildren) => (
           icon: Users,
         },
         {
-          labelID: "Messages",
+          labelID: "messages",
           pathname: "/admin/messages",
           icon: MessageSquare,
         },

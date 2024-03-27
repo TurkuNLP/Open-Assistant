@@ -14,7 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { createColumnHelper } from "@tanstack/table-core";
 import { formatDistanceToNow, formatISO9075 } from "date-fns";
-import { Eye, RotateCw, Trash } from "lucide-react";
+import { fi } from "date-fns/locale";
+import { Edit, Eye, RotateCw, Trash } from "lucide-react";
 import NextLink from "next/link";
 import { useTranslation } from "next-i18next";
 import { useMemo, useState } from "react";
@@ -43,7 +44,7 @@ const columnHelper = createColumnHelper<
 // TODO move this to somewhere
 const DateDiff = ({ children }: { children: string | Date | number }) => {
   const date = new Date(children);
-  const diff = formatDistanceToNow(date, { addSuffix: true });
+  const diff = formatDistanceToNow(date, { addSuffix: true, locale: fi });
   return (
     <Tooltip label={formatISO9075(date)} placement="top">
       {diff}
@@ -108,6 +109,7 @@ export const AdminMessageTable = ({ userId, includeUser }: { userId?: string; in
   const columns = useMemo(() => {
     return [
       columnHelper.accessor("user", {
+        header: "Käyttäjä",
         cell({ getValue }) {
           const user = getValue();
           if (!user) {
@@ -123,6 +125,7 @@ export const AdminMessageTable = ({ userId, includeUser }: { userId?: string; in
         },
       }),
       columnHelper.accessor("text", {
+        header: "Teksti",
         meta: {
           filterable: true,
         },
@@ -137,30 +140,39 @@ export const AdminMessageTable = ({ userId, includeUser }: { userId?: string; in
               <Avatar
                 size="xs"
                 mr="2"
-                src={`${row.original.is_assistant ? "/images/logos/logo.png" : "/images/temp-avatars/av1.jpg"}`}
+                src={`${row.original.is_assistant ? "/images/logos/logo.webp" : "/images/avatars/user.webp"}`}
               ></Avatar>
               {renderText}
               {!row.original.parent_id && (
-                <Badge colorScheme="green" ml="1">
+                <Badge colorScheme="green" ms="1">
                   Root
                 </Badge>
               )}
               {row.original.deleted && (
-                <Badge colorScheme="red" ml="1">
-                  Deleted
+                <Badge colorScheme="red" ms="1">
+                  Poistettu
                 </Badge>
               )}
-              {row.original.review_result === false && <Badge colorScheme="yellow">Spam</Badge>}
+              {row.original.review_result === false && (
+                <Badge colorScheme="yellow" ms="1">
+                  Roskapostia
+                </Badge>
+              )}
+              {row.original.edited && (
+                <Badge colorScheme="gray" ms="1">
+                  Muokattu
+                </Badge>
+              )}
             </Box>
           );
         },
       }),
       columnHelper.accessor("lang", {
-        header: "Language",
+        header: "Kieli",
         cell: ({ getValue }) => <Badge textTransform="uppercase">{getValue()}</Badge>,
       }),
       columnHelper.accessor("emojis", {
-        header: "Reactions",
+        header: "Reaktiot",
         cell: ({ getValue, row }) => {
           const emojis = getValue();
 
@@ -193,16 +205,16 @@ export const AdminMessageTable = ({ userId, includeUser }: { userId?: string; in
         },
       }),
       columnHelper.accessor("review_count", {
-        header: "Review Count",
+        header: "Arvioiden määrä",
       }),
       columnHelper.accessor("created_date", {
-        header: "Date",
+        header: "Luontiaika",
         cell: ({ getValue }) => {
           return <DateDiff>{getValue()}</DateDiff>;
         },
       }),
       columnHelper.accessor((row) => row.id, {
-        header: "Actions",
+        header: "Toiminnot",
         cell: ({ getValue, row }) => {
           const id = getValue();
           return (
@@ -211,7 +223,7 @@ export const AdminMessageTable = ({ userId, includeUser }: { userId?: string; in
                 as={NextLink}
                 href={ROUTES.ADMIN_MESSAGE_DETAIL(id)}
                 icon={Eye}
-                aria-label="View message"
+                aria-label="Tarkastele viestiä"
               />
               {!row.original.deleted ? (
                 <DataTableAction
@@ -220,7 +232,7 @@ export const AdminMessageTable = ({ userId, includeUser }: { userId?: string; in
                     onOpen();
                   }}
                   icon={Trash}
-                  aria-label="Delete message"
+                  aria-label="Poista viesti"
                   isLoading={isDeleteMutating && deleteMessageId === id}
                 />
               ) : (
@@ -230,10 +242,16 @@ export const AdminMessageTable = ({ userId, includeUser }: { userId?: string; in
                     onOpen();
                   }}
                   icon={RotateCw}
-                  aria-label="Undelete message"
+                  aria-label="Palauta viesti"
                   isLoading={isUndeleteMutating && undeleteMessageId === id}
                 />
               )}
+              <DataTableAction
+                as={NextLink}
+                href={ROUTES.ADMIN_MESSAGE_EDIT(id)}
+                icon={Edit}
+                aria-label="Muokkaa viestiä"
+              />
             </HStack>
           );
         },
@@ -259,15 +277,15 @@ export const AdminMessageTable = ({ userId, includeUser }: { userId?: string; in
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Confirm {deleteMessageId ? "deleting" : "undeleting"} this message</ModalHeader>
+          <ModalHeader>Varmista tämän viestin {deleteMessageId ? "poisto" : "palauttaminen"}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <p>
               {undeleteMessageId
-                ? "By undeleting this message you take the risk to undelete every parent messages that may also be deleted."
-                : ""}
+                ? "Jos kumoat tämän viestin poistamisen, joudut palauttamaan käsin kaikki tämän viestin alapuolella olevat viestit keskustelupuussa."
+                : "Jos poistat tämän viestin, kaikki sen alapuolella olevat vastaukset poistetaan keskustelupuusta."}
             </p>
-            {deleteMessageId ? "Delete" : "Are you sure to undelete"} this message? <p></p>
+            Haluatko varmasti {deleteMessageId ? "poistaa" : "palauttaa"} tämän viestin? <p></p>
           </ModalBody>
           <ModalFooter>
             <Button variant="ghost" mr={3} onClick={onClose}>

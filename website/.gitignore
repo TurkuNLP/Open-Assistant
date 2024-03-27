@@ -43,3 +43,5 @@ next-env.d.ts
 /cypress/videos
 /cypress-visual-screenshots/diff
 /cypress-visual-screenshots/comparison
+
+.env

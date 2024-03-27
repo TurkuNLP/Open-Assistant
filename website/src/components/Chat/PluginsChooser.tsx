@@ -2,6 +2,7 @@ import {
   Avatar,
   Box,
   Button,
+  Flex,
   IconButton,
   Input,
   Menu,
@@ -23,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 import { AlertCircle, CheckCircle2, Edit, Eye, Paperclip, Plus } from "lucide-react";
 import { X } from "lucide-react";
+import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { Dispatch, SetStateAction, useCallback, useRef, useState } from "react";
 import { MouseEvent } from "react";
@@ -234,6 +236,16 @@ export const PluginsChooser = ({ plugins, setPlugins }: PluginsChooserProps) => 
               placeholder={t("plugin_url_placeholder")}
             />
             {selectedForEditPluginIndex !== null && <JsonCard>{plugins[selectedForEditPluginIndex]}</JsonCard>}
+            <Box>
+              <Text fontSize="md" fontWeight="bold" my={2}>
+                {t("plugin_repositories")}
+              </Text>
+              <Flex gap={2}>
+                <Button as={Link} href="https://www.getit.ai/gpt-plugins" target="_blank" rel="noreferrer">
+                  GetIt.ai
+                </Button>
+              </Flex>
+            </Box>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" onClick={handlePluginSave} isLoading={loading}>

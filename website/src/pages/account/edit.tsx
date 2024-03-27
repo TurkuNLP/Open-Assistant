@@ -16,14 +16,15 @@ export default function Account() {
   return (
     <>
       <Head>
-        <title>Open Assistant</title>
+        <title>Muuta käyttäjänimi - Avoin Avustaja</title>
         <meta
           name="description"
           content="Conversational AI for everyone. An open source project to create a chat enabled GPT LLM run by LAION and contributors around the world."
         />
       </Head>
       <main className="oa-basic-theme h-3/4 z-0 flex flex-col items-center justify-center">
-        <p>{session.user.name || "No username"}</p>
+        <h1 className="font-bold text-2xl">Muuta käyttäjänimi</h1>
+        <p className="m-4">{`Nykyinen käyttäjänimi: ${session.user.name}` || "Ei käyttäjänimeä"}</p>
         <EditForm />
       </main>
     </>
@@ -64,13 +65,13 @@ const EditForm = () => {
       <InputGroup>
         <FormControl isInvalid={errors.username ? true : false}>
           <Input
-            placeholder="Edit Username"
+            placeholder="Uusi käyttäjänimi"
             type="text"
             {...register("username", { required: true, pattern: validDisplayNameRegex })}
           ></Input>
           <FormErrorMessage>
-            {errors.username?.type === "required" && "Username is required"}
-            {errors.username?.type === "pattern" && "Username is invalid"}
+            {errors.username?.type === "required" && "Käyttäjänimi ei voi olla tyhjä"}
+            {errors.username?.type === "pattern" && "Käyttäjänimen muoto on virheellinen"}
           </FormErrorMessage>
         </FormControl>
         <SubmitButton control={control}></SubmitButton>
@@ -83,7 +84,7 @@ const SubmitButton = ({ control }: { control: Control<{ username: string }> }) =
   const username = useWatch({ control, name: "username" });
   return (
     <Button isDisabled={!username} type="submit" value="Change">
-      Submit
+      Vahvista
     </Button>
   );
 };

@@ -15,13 +15,15 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 export { getServerSideProps } from "src/lib/defaultServerSideProps";
 import { AdminArea } from "src/components/AdminArea";
 import { JsonCard } from "src/components/JsonCard";
 import { AdminLayout } from "src/components/Layout";
+import { MessageHistoryTable } from "src/components/Messages/MessageHistoryTable";
 import { MessageTree } from "src/components/Messages/MessageTree";
 import { get } from "src/lib/api";
-import { Message, MessageWithChildren } from "src/types/Conversation";
+import { Message, MessageRevision, MessageWithChildren } from "src/types/Conversation";
 import useSWRImmutable from "swr/immutable";
 
 const MessageDetail = () => {
@@ -42,23 +44,33 @@ const MessageDetail = () => {
   }>(`/api/admin/messages/${messageId}/tree`, get, {
     keepPreviousData: true,
   });
+  const {
+    data: revisions,
+    isLoading: revisionsLoading,
+    error: revisionError,
+  } = useSWRImmutable<MessageRevision[]>(`/api/admin/messages/${messageId}/history`, get, { keepPreviousData: true });
+
+  const { t } = useTranslation(["common"]);
 
   return (
     <>
       <Head>
-        <title>Open Assistant</title>
+        <title>{t("common:title")}</title>
       </Head>
       <AdminArea>
-        {isLoading && !data && <CircularProgress isIndeterminate></CircularProgress>}
+        {(isLoading && !data) ||
+          (revisionsLoading && !revisions && <CircularProgress isIndeterminate></CircularProgress>)}
         {error && "Unable to load message tree"}
+        {revisionError && "Unable to load message revision history"}
         {data &&
+          revisions &&
           (data.tree === null ? (
             "Unable to build tree"
           ) : (
             <Grid gap="6">
               <Card>
                 <CardHeader fontWeight="bold" fontSize="xl" pb="0">
-                  Message Detail
+                  Viestin tiedot
                 </CardHeader>
                 <CardBody>
                   <JsonCard>{data.message}</JsonCard>
@@ -66,41 +78,49 @@ const MessageDetail = () => {
               </Card>
               <Card>
                 <CardHeader fontWeight="bold" fontSize="xl" pb="0">
-                  Tree {data.tree.id}
+                  Viestihistoria
+                </CardHeader>
+                <CardBody>
+                  <MessageHistoryTable message={data?.message} revisions={revisions} />
+                </CardBody>
+              </Card>
+              <Card>
+                <CardHeader fontWeight="bold" fontSize="xl" pb="0">
+                  Viestipuu {data.tree.id}
                 </CardHeader>
                 <CardBody>
                   <TableContainer>
                     <Table variant="simple">
-                      <TableCaption>Message tree state</TableCaption>
+                      <TableCaption>Viestipuun tila</TableCaption>
                       <Thead>
                         <Tr>
-                          <Th>Property</Th>
-                          <Th>Value</Th>
+                          <Th>Ominaisuus</Th>
+                          <Th>Arvo</Th>
                         </Tr>
                       </Thead>
                       <Tbody>
                         <Tr>
-                          <Td>State</Td>
+                          <Td>Tila</Td>
                           <Td>{data.tree_state.state}</Td>
                         </Tr>
                         <Tr>
-                          <Td>Goal Tree Size</Td>
+                          <Td>Maalisyvyys</Td>
                           <Td>{data.tree_state.goal_tree_size}</Td>
                         </Tr>
                         <Tr>
-                          <Td>Max depth</Td>
+                          <Td>Tämänhetkinen maksimisyvyys</Td>
                           <Td>{data.tree_state.max_depth}</Td>
                         </Tr>
                         <Tr>
-                          <Td>Max children count</Td>
+                          <Td>Tämänhetkinen vastausten maksimimäärä</Td>
                           <Td>{data.tree_state.max_children_count}</Td>
                         </Tr>
                         <Tr>
-                          <Td>Active</Td>
+                          <Td>Aktiivinen</Td>
                           <Td>{data.tree_state.active ? "Active" : "Not active"}</Td>
                         </Tr>
                         <Tr>
-                          <Td>Origin</Td>
+                          <Td>Alkuperä</Td>
                           <Td>{data.tree_state.origin || "null"}</Td>
                         </Tr>
                       </Tbody>

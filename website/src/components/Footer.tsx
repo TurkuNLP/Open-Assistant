@@ -29,7 +29,7 @@ export function Footer() {
           <Flex alignItems="center">
             <Box pr="2">
               <Link href="/" aria-label="Home">
-                <Image src="/images/logos/logo.png" width="52" height="52" alt="logo" />
+                <Image src="/images/logos/logo_mono.webp" width="52" height="52" alt="logo" />
               </Link>
             </Box>
 
@@ -41,8 +41,6 @@ export function Footer() {
                 {t("conversational")}
               </Text>
             </Box>
- 
-
           </Flex>
 
           <nav>
@@ -64,10 +62,13 @@ export function Footer() {
               </Flex>
               <Flex direction="column" alignItems={["center", "start"]}>
                 <Text fontWeight="bold" color={textColor}>
-                  {"Ohjeistus [englanniksi]"}
+                  {"Ohjeistus"}
                 </Text>
-                <FooterLink href="https://projects.laion.ai/Open-Assistant" label={"Dokumentaatio"} />
-                <FooterLink href="https://projects.laion.ai/Open-Assistant/docs/faq" label={"Usein kysytyt kysymykset"} />
+                <FooterLink href="https://github.com/TurkuNLP/Open-Assistant/wiki" label={"Dokumentaatio"} />
+                <FooterLink
+                  href="https://github.com/TurkuNLP/Open-Assistant/wiki/Usein-Kysytyt-Kysymykset"
+                  label={"Usein kysytyt kysymykset"}
+                />
               </Flex>
             </Box>
           </nav>

@@ -18,12 +18,13 @@ const jsonExpandRowModel = createJsonExpandRowModel<TrollboardEntity>();
 const columns: DataTableColumnDef<TrollboardEntity>[] = [
   {
     ...columnHelper.accessor("rank", {
+      header: "Sijoitus",
       cell: jsonExpandRowModel.renderCell,
     }),
     span: jsonExpandRowModel.span,
   },
   columnHelper.accessor("display_name", {
-    header: "Display name",
+    header: "Käyttäjänimi",
     cell: ({ row }) => {
       const user = row.original;
       return (
@@ -36,13 +37,14 @@ const columns: DataTableColumnDef<TrollboardEntity>[] = [
     },
   }),
   columnHelper.accessor("troll_score", {
-    header: "Troll score",
+    header: "Trollipisteet",
   }),
   columnHelper.accessor("red_flags", {
-    header: "Red flags",
+    header: "Punaliput",
   }),
   columnHelper.accessor((row) => [row.upvotes, row.downvotes] as const, {
     id: "vote",
+    header: "Äänet",
     cell: ({ getValue }) => {
       const [up, down] = getValue();
       return (
@@ -56,13 +58,14 @@ const columns: DataTableColumnDef<TrollboardEntity>[] = [
     },
   }),
   columnHelper.accessor((row) => row.spam + row.spam_prompts, {
-    header: "Spam",
+    header: "Roskaposti",
   }),
   columnHelper.accessor("toxicity", {
     cell: ({ getValue }) => toPercentage(getValue() || 0),
+    header: "Myrkyllisyys",
   }),
   columnHelper.accessor((row) => row.user_id, {
-    header: "Actions",
+    header: "Toiminnot",
     cell: ({ row }) => (
       <IconButton
         as={NextLink}
@@ -105,7 +108,7 @@ export const TrollboardTable = ({
   }
 
   if (error) {
-    return <span>Unable to load leaderboard</span>;
+    return <span>Tulostaulukon lataaminen epäonnistui</span>;
   }
 
   return (

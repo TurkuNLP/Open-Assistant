@@ -18,6 +18,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { BuiltInProviderType } from "next-auth/providers";
 import { ClientSafeProvider, getProviders, signIn } from "next-auth/react";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -41,18 +42,19 @@ export type SignInErrorTypes =
   | "default";
 
 const errorMessages: Record<SignInErrorTypes, string> = {
-  Signin: "Try signing in with a different account.",
-  OAuthSignin: "Try signing in with a different account.",
-  OAuthCallback: "Try signing in with the same account you used originally.",
-  OAuthCreateAccount: "Try signing in with a different account.",
-  EmailCreateAccount: "Try signing in with a different account.",
-  Callback: "Try signing in with a different account.",
-  OAuthAccountNotLinked: "To confirm your identity, sign in with the same account you used originally.",
-  EmailSignin: "The e-mail could not be sent.",
-  CredentialsSignin: "Sign in failed. Check the details you provided are correct.",
-  SessionRequired: "Please sign in to access this page.",
+  Signin: "Yritä kirjautua sisään toisella tavalla.",
+  OAuthSignin: "Yritä kirjautua sisään toisella tavalla.",
+  OAuthCallback: "Yritä kirjautua sisään samalla tavalla jolla rekisteröidyit.",
+  OAuthCreateAccount: "Yritä kirjautua sisään toisella tavalla.",
+  EmailCreateAccount: "Yritä kirjautua sisään toisella tavalla.",
+  Callback: "Yritä kirjautua sisään toisella tavalla.",
+  OAuthAccountNotLinked:
+    "Identiteettisi vahvistamiseksi kirjaudu sisään samalla sähköpostiosoitteella jota käytit alunperin.",
+  EmailSignin: "Sähköpostia ei voitu lähettää.",
+  CredentialsSignin: "Sisäänkirjautuminen epäonnistui. Tarkista antamiesi tietojen oikeellisuus.",
+  SessionRequired: "Kirjaudu sisään nähdäksesi tämän sivun.",
   InvalidCaptcha: "Invalid captcha",
-  default: "Unable to sign in.",
+  default: "Sisäänkirjautuminen epäonnistui tuntemattomasta syystä.",
 };
 
 const REDIRECT_AFTER_LOGIN = "/dashboard";
@@ -67,6 +69,7 @@ function Signin({ providers }: SigninProps) {
     useBrowserConfig();
   const { discord, email, google, credentials } = providers;
   const [error, setError] = useState("");
+  const { t } = useTranslation(["common"]);
 
   useEffect(() => {
     const err = router?.query?.error;
@@ -85,7 +88,7 @@ function Signin({ providers }: SigninProps) {
   return (
     <>
       <Head>
-        <title>Sign Up - Open Assistant</title>
+        <title>{`${t("common:sign_in")} - ${t("common:title")}`}</title>
         <meta name="Sign Up" content="Sign up to access Open Assistant" />
       </Head>
       <AuthLayout>
@@ -123,13 +126,13 @@ function Signin({ providers }: SigninProps) {
         </Stack>
         <hr className="mt-14 mb-4 h-px bg-gray-200 border-0" />
         <div className="text-center">
-          By signing up you agree to our <br></br>
+          Rekisteröitymällä hyväksyt <br></br>
           <Link href="/terms-of-service" aria-label="Terms of Service" className="hover:underline underline-offset-4">
-            <b>Terms of Service</b>
+            <b>Käyttöehtomme</b>
           </Link>{" "}
-          and{" "}
+          sekä{" "}
           <Link href="/privacy-policy" aria-label="Privacy Policy" className="hover:underline underline-offset-4">
-            <b>Privacy Policy</b>
+            <b>Tietosuojaselosteemme</b>
           </Link>
           .
         </div>
@@ -175,13 +178,13 @@ const EmailSignInForm = ({
             data-cy="email-address"
             variant="outline"
             size="lg"
-            placeholder="Email Address"
+            placeholder="Sähköpostiosoite"
             {...register("email", { required: true, pattern: /[^\s@]+@[^\s@]+\.[^\s@]+/g })}
             errorBorderColor="orange.600"
           />
           <FormErrorMessage>
-            {errors.email?.type === "required" && "Email is required"}
-            {errors.email?.type === "pattern" && "Email is invalid"}
+            {errors.email?.type === "required" && "Tarvitsemme sähköpostiosoitteesi"}
+            {errors.email?.type === "pattern" && "Sähköpostiosoite on virheellinen"}
           </FormErrorMessage>
         </FormControl>
         {enableEmailSigninCaptcha && (
@@ -197,7 +200,7 @@ const EmailSignInForm = ({
           mt="4"
           isDisabled={!captchaSuccess && enableEmailSigninCaptcha}
         >
-          Continue with Email
+          Kirjaudu sähköpostilla
         </SigninButton>
       </Stack>
     </form>
@@ -246,7 +249,7 @@ const DebugSigninForm = ({ providerId }: { providerId: string }) => {
       className="border-2 border-orange-600 rounded-md p-4 relative"
     >
       <Box bg={bgColorClass} className={`text-orange-600 absolute -top-3 left-5 px-1 z-20`}>
-        For Debugging Only
+        Vain kehityskäyttöön
       </Box>
       <Stack>
         <Input
@@ -257,7 +260,7 @@ const DebugSigninForm = ({ providerId }: { providerId: string }) => {
           errorBorderColor="orange.600"
         />
         <RoleSelect {...register("role")}></RoleSelect>
-        <SigninButton leftIcon={<Bug />}>Continue with Debug User</SigninButton>
+        <SigninButton leftIcon={<Bug />}>Kirjaudu kehittäjän käyttäjänä</SigninButton>
       </Stack>
     </form>
   );

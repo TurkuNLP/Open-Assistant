@@ -4,7 +4,7 @@ from typing import Callable
 
 import requests
 import transformers
-from chat_chain_prompts import INSTRUCTIONS, OBSERVATION_SEQ, TOOLS_PREFIX, V2_ASST_PREFIX, V2_PROMPTER_PREFIX
+from chat_chain_prompts import INSTRUCTIONS, OBSERVATION_SEQ, TOOLS_PREFIX
 from hf_langchain_inference import HFInference
 from langchain.agents import Tool
 from langchain.memory import ConversationBufferMemory
@@ -13,7 +13,7 @@ from loguru import logger
 from oasst_shared.schemas import inference
 from openapi_parser import prepare_plugin_for_llm
 from settings import settings
-from utils import shared_tokenizer_lock
+from utils import shared_tokenizer_lock, special_tokens
 
 RESPONSE_MAX_LENGTH = 2048
 DESCRIPTION_FOR_MODEL_MAX_LENGTH = 512
@@ -21,7 +21,7 @@ DESCRIPTION_FOR_MODEL_MAX_LENGTH = 512
 llm_json_parser = HFInference(
     inference_server_url=settings.inference_server_url,
     max_new_tokens=512,
-    stop_sequences=["</s>"],
+    stop_sequences=[special_tokens["end"] if special_tokens["end"] else "</s>"],
     top_k=5,
     temperature=0.20,
     repetition_penalty=(1 / 0.83),
@@ -139,7 +139,7 @@ def prepare_json(json_str: str) -> str:
         except json.decoder.JSONDecodeError as e:
             logger.warning(f"JSON is still not valid, trying to fix it with LLM {fixed_json}")
             # If still invalid, try using LLM to fix
-            prompt = f"""{V2_PROMPTER_PREFIX}Below is malformed JSON object string:
+            prompt = f"""{special_tokens['prompter']}Below is malformed JSON object string:
 --------------
 {json_str}
 --------------
@@ -151,7 +151,7 @@ RULES:
 1. If malformed JSON object string contains multiple objects, you merge them into one.
 2. You will never made up or add any new data, you will only fix the malformed JSON object string.
 
-Here is the fixed JSON object string:</s>{V2_ASST_PREFIX}"""
+Here is the fixed JSON object string:{special_tokens['end'] or '</s>'}{special_tokens['assistant']}"""
             logger.warning(f"JSON Fix Prompt: {prompt}")
             out = llm_json_parser.generate(prompts=[prompt]).generations[0][0].text
             out = out[: out.find("}") + 1]
@@ -223,7 +223,7 @@ class RequestsForLLM:
     def process_response(self, res: requests.Response) -> str:
         logger.info(f"Request response: {res.text}")
         if res.status_code != 200:
-            return f"ERROR! That didn't work, try modifying Action Input.\n{res.text}. Try again!"
+            return f"ERROR! Please modify Action Input. according to this error message: \n{res.text}. Try again!"
 
         if res.text is None or len(res.text) == 0:
             return "ERROR! That didn't work, try modifying Action Input.\nEmpty response. Try again!"
@@ -329,6 +329,7 @@ def prepare_prompt(
     tokenizer: transformers.PreTrainedTokenizer,
     worker_config: inference.WorkerConfig,
     action_input_format: str,
+    custom_instructions: str = "",
 ) -> str:
     max_input_length = worker_config.model_config.max_input_length
 
@@ -337,6 +338,7 @@ def prepare_prompt(
         "language": language,
         "current_time": current_time,
         "chat_history": memory.buffer,
+        "custom_instructions": custom_instructions,
     }
 
     if tools_names:
@@ -356,6 +358,7 @@ def prepare_prompt(
             "language": language,
             "current_time": current_time,
             "chat_history": memory.buffer,
+            "custom_instructions": custom_instructions,
         }
 
         if tools_names:
